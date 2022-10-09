@@ -247,7 +247,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
         jLabel5.setText("BIENVENIDO");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 380, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 210, 40));
 
         jButton10.setText("REGRESAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
