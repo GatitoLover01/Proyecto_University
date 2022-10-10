@@ -44,7 +44,6 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         Botones = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -189,9 +188,6 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         Botones.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton5.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton5.setText("Ingresar");
-
         jButton6.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton6.setText("Actualizar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -208,11 +204,9 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         BotonesLayout.setHorizontalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -221,7 +215,6 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton2))
                 .addContainerGap())
@@ -243,10 +236,10 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
                     .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContenidoLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(161, 161, 161)
+                        .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -395,7 +388,6 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     private javax.swing.JPanel Encabezado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
