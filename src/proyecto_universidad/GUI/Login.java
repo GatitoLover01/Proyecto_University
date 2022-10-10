@@ -1,4 +1,4 @@
-package proyecto_universidad.JFrameForm;
+package proyecto_universidad.GUI;
 
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
