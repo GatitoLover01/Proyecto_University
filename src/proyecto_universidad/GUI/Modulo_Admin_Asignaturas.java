@@ -16,7 +16,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
      */
     public Modulo_Admin_Asignaturas() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
