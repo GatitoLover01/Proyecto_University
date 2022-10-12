@@ -39,6 +39,9 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
         setBackground(new java.awt.Color(229, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(993, 550));
+
+        jPanel2.setBackground(new java.awt.Color(229, 255, 255));
         jPanel2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
 
         jTable2.setBackground(new java.awt.Color(204, 204, 255));
