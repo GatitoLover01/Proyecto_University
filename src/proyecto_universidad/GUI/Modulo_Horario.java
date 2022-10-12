@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto_universidad;
+package proyecto_universidad.GUI;
 
 /**
  *
@@ -35,8 +35,6 @@ public class Modulo_Horario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(993, 550));
-        setPreferredSize(new java.awt.Dimension(993, 550));
 
         jPanel1.setBackground(new java.awt.Color(229, 255, 255));
 
