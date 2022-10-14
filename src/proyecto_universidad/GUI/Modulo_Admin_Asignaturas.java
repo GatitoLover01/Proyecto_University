@@ -35,7 +35,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -109,7 +108,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)))
                 .addGap(7, 7, 7)
@@ -130,13 +128,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, -1, 50));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel9.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("PUESTO");
-        jLabel9.setOpaque(true);
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, 40));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,7 +330,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
