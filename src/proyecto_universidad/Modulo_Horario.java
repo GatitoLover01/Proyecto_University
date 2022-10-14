@@ -267,6 +267,8 @@ public class Modulo_Horario extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
         jLabel16.setText("UNIVERSIDAD FRANCISCO");
 
+        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dulce\\Desktop\\Logo.png")); // NOI18N
+
         javax.swing.GroupLayout Encabezado3Layout = new javax.swing.GroupLayout(Encabezado3);
         Encabezado3.setLayout(Encabezado3Layout);
         Encabezado3Layout.setHorizontalGroup(
@@ -274,9 +276,9 @@ public class Modulo_Horario extends javax.swing.JFrame {
             .addGroup(Encabezado3Layout.createSequentialGroup()
                 .addGroup(Encabezado3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Encabezado3Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel19)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel16))
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
