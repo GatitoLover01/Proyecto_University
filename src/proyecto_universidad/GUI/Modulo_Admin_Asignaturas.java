@@ -129,6 +129,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         });
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, -1, 50));
 
+        jTable2.setFont(new java.awt.Font("Corbel", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
