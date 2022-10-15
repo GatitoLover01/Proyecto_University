@@ -177,6 +177,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="100" y="320" width="150" height="30"/>
@@ -203,6 +206,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="100" y="280" width="150" height="30"/>
@@ -229,6 +235,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="310" y="320" width="150" height="30"/>
@@ -258,6 +267,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="310" y="280" width="150" height="30"/>
@@ -287,6 +299,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="520" y="280" width="150" height="30"/>
@@ -316,6 +331,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="520" y="320" width="150" height="30"/>
@@ -345,6 +363,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="730" y="360" width="150" height="30"/>
@@ -374,6 +395,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="730" y="280" width="150" height="30"/>
@@ -403,6 +427,9 @@
               <Image iconType="3" name="/proyecto_universidad/Imagenes/OnBoton.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="730" y="320" width="150" height="30"/>
@@ -413,7 +440,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto_universidad/Imagenes/cajas.png"/>
+              <Image iconType="3" name="/proyecto_universidad/Imagenes/CajaInicioSesion.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -429,7 +456,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto_universidad/Imagenes/cajas.png"/>
+              <Image iconType="3" name="/proyecto_universidad/Imagenes/CajaInicioSesion.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -442,7 +469,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto_universidad/Imagenes/cajas.png"/>
+              <Image iconType="3" name="/proyecto_universidad/Imagenes/CajaInicioSesion.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -455,7 +482,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto_universidad/Imagenes/cajas.png"/>
+              <Image iconType="3" name="/proyecto_universidad/Imagenes/CajaInicioSesion.png"/>
             </Property>
           </Properties>
           <Constraints>

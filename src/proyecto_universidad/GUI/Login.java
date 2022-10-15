@@ -147,10 +147,11 @@ public class Login extends javax.swing.JFrame {
                                 && datos.getContraseña().equals(resultado.getString("Contrasena"))) {
                             //System.out.println("El usuario  prof y contraseña es correcto");
                             resultado = conexion.consultarRegistros("SELECT Id_categoria FROM profesores WHERE Matricula_profesor = " + "'" + datos.getMatricula() + "'");
-                            //dispose(); //cierro ventana actual
                             //System.out.println("SELECT Id_categoria FROM profesores WHERE Matricula_profesor = " + "'" + datos.getMatricula() + "'");
-                            while (resultado.next()) {
-                                switch (resultado.getInt("Id_categoria")) {
+                            while (resultado.next()) {                                
+                                int cat = resultado.getInt("Id_categoria");
+                                //System.out.println(cat);
+                                switch (cat) {
                                     case 1:
                                         Modulo_Administrador mod_ADM = new Modulo_Administrador();//creo un objeto de Menu principal
                                         mod_ADM.setVisible(true);
@@ -165,7 +166,8 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                     } catch (Exception e) {
-                        System.out.println("BUSQUEDA FALLIDA");
+                        JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos. \n"
+                                + "Error: " + e);
                     }
                 }
             }

@@ -132,6 +132,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton1.setInheritsPopupMenu(true);
         jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 150, 30));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
@@ -143,6 +148,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton2.setInheritsPopupMenu(true);
         jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 150, 30));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
@@ -154,6 +164,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton3.setInheritsPopupMenu(true);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 150, 30));
 
         jButton4.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -166,6 +181,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton4.setInheritsPopupMenu(true);
         jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 150, 30));
 
         jButton5.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -178,6 +198,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton5.setInheritsPopupMenu(true);
         jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 150, 30));
 
         jButton6.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -190,6 +215,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton6.setInheritsPopupMenu(true);
         jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 150, 30));
 
         jButton7.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -202,6 +232,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton7.setInheritsPopupMenu(true);
         jButton7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 150, 30));
 
         jButton8.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -214,6 +249,11 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton8.setInheritsPopupMenu(true);
         jButton8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 150, 30));
 
         jButton9.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
@@ -226,23 +266,28 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         jButton9.setInheritsPopupMenu(true);
         jButton9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         jButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 150, 30));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/cajas.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/CajaInicioSesion.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 220));
 
         jLabel3.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/cajas.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/CajaInicioSesion.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 200, 220));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/cajas.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/CajaInicioSesion.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 200, 220));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/cajas.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/CajaInicioSesion.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 200, 220));
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
@@ -278,6 +323,44 @@ public class Modulo_Administrador extends javax.swing.JFrame {
     //    lg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Modulo_Admin_Asignaturas modAdmAsig = new Modulo_Admin_Asignaturas();
+        modAdmAsig.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

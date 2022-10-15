@@ -5,17 +5,26 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import proyecto_univerisdad.BL.prounivBL;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
  * @author erick
  */
 public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modulo_Administrador
-     */
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
+
     public Modulo_Admin_Asignaturas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        mostrarDatos();
     }
 
     /**
@@ -36,20 +45,20 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbAsignaturas = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_Id_Asignatura = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_Nombre_asig = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_Creditos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -129,8 +138,8 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         });
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, -1, 50));
 
-        jTable2.setFont(new java.awt.Font("Corbel", 0, 11)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbAsignaturas.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        tbAsignaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -146,41 +155,60 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        tbAsignaturas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAsignaturasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbAsignaturas);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 610, 220));
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton2.setText("AGREGAR");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setInheritsPopupMenu(true);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.setBorder(null);
+        btnAgregar.setBorderPainted(false);
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregar.setDisabledSelectedIcon(null);
+        btnAgregar.setFocusPainted(false);
+        btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAgregar.setInheritsPopupMenu(true);
+        btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btnAgregar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton1.setText("ACTUALIZAR");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setInheritsPopupMenu(true);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setBorder(null);
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.setContentAreaFilled(false);
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnActualizar.setDisabledSelectedIcon(null);
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnActualizar.setInheritsPopupMenu(true);
+        btnActualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton12.setText("ELIMINAR");
-        jButton12.setBorder(null);
-        jButton12.setBorderPainted(false);
-        jButton12.setContentAreaFilled(false);
-        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton12.setInheritsPopupMenu(true);
-        jButton12.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton12.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setBorder(null);
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setDisabledSelectedIcon(null);
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminar.setInheritsPopupMenu(true);
+        btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -188,11 +216,11 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -200,9 +228,9 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -244,27 +272,27 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel1.setText("Id Asignatura:");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 180, -1));
+        txt_Id_Asignatura.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jPanel6.add(txt_Id_Asignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 180, -1));
 
         jLabel3.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel3.setText("Nombre:");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_Nombre_asig.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        txt_Nombre_asig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_Nombre_asigActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, -1));
+        jPanel6.add(txt_Nombre_asig, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel4.setText("Creditos:");
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
+        txt_Creditos.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jPanel6.add(txt_Creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 280, 390));
 
@@ -274,14 +302,91 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-//        Login lg = new Login();
-    //    lg.setVisible(true);
+        Login lg = new Login();
+        lg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_Nombre_asigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Nombre_asigActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_Nombre_asigActionPerformed
+
+    private void tbAsignaturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAsignaturasMouseClicked
+        if (evt.getClickCount() == 1) {
+            JTable receptor = (JTable) evt.getSource();
+
+            txt_Id_Asignatura.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            txt_Nombre_asig.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            txt_Creditos.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+        }
+    }//GEN-LAST:event_tbAsignaturasMouseClicked
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (txt_Id_Asignatura.getText().equals("") || txt_Nombre_asig.getText().equals("") || txt_Creditos.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No puede dejar un campo vacío.");
+        } else {
+            ResultSet resultado = null;
+            resultado = conexion.consultarRegistros("Select Id_Asignatura from asignaturas");
+            try {
+                prounivBL datos = obtenerDatos();
+                while (resultado.next()) {
+                    if (datos.getId_asig().equals(resultado.getString("Id_Asignatura"))) {
+                        JOptionPane.showMessageDialog(null, "No puede ingresar un nuevo campo con un ID igual.");
+                        return;
+                    } else {                     
+                        String strSentenciaInsert = String.format("INSERT INTO `asignaturas`(`Id_Asignatura`,`Nombre`,`Creditos`) "
+                                + "VALUES ('%s', '%s', '%s')", datos.getId_asig(), datos.getNombre_asig(), datos.getCreditos());
+                        conexion.ejecutarSentenciaSQL(strSentenciaInsert);
+
+                        this.limpiarTabla();
+                        this.mostrarDatos();//actualizamos la tabla
+                        this.LimpiarGUI();
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    void LimpiarGUI(){
+        txt_Id_Asignatura.setText("");            
+        txt_Nombre_asig.setText("");           
+        txt_Creditos.setText("");
+    }
+    void limpiarTabla(){
+        modelo.setNumRows(0);
+    }
+    
+    void mostrarDatos() {
+        String sql = "Select * from asignaturas";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] asignatura = new Object[3];
+            modelo = (DefaultTableModel) tbAsignaturas.getModel();
+            while (rs.next()) {
+                asignatura[0] = rs.getInt("Id_Asignatura");
+                asignatura[1] = rs.getString("Nombre");
+                asignatura[2] = rs.getString("Creditos");
+                modelo.addRow(asignatura);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
+
+    public prounivBL obtenerDatos() {
+        prounivBL datos = new prounivBL();
+
+        String id_asig = txt_Id_Asignatura.getText().trim();
+        String nombre_asig = txt_Nombre_asig.getText().trim();
+        String creditos = txt_Creditos.getText().trim();
+
+        datos.setId_asig(id_asig);
+        datos.setNombre_asig(nombre_asig);
+        datos.setCreditos(creditos);
+
+        return datos;
+    }
 
     /**
      * @param args the command line arguments
@@ -320,10 +425,10 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -339,9 +444,9 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tbAsignaturas;
+    private javax.swing.JTextField txt_Creditos;
+    private javax.swing.JTextField txt_Id_Asignatura;
+    private javax.swing.JTextField txt_Nombre_asig;
     // End of variables declaration//GEN-END:variables
 }
