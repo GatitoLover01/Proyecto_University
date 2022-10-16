@@ -172,7 +172,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         btnAgregar.setBorderPainted(false);
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAgregar.setDisabledSelectedIcon(null);
         btnAgregar.setFocusPainted(false);
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAgregar.setInheritsPopupMenu(true);
@@ -190,12 +189,16 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         btnActualizar.setBorderPainted(false);
         btnActualizar.setContentAreaFilled(false);
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnActualizar.setDisabledSelectedIcon(null);
         btnActualizar.setFocusPainted(false);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setInheritsPopupMenu(true);
         btnActualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
@@ -203,12 +206,16 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminar.setDisabledSelectedIcon(null);
         btnEliminar.setFocusPainted(false);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setInheritsPopupMenu(true);
         btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -347,6 +354,49 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if (txt_Id_Asignatura.getText().equals("") || txt_Nombre_asig.getText().equals("") || txt_Creditos.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No puede dejar un campo vacío.");
+        } else {
+            ResultSet resultado = null;
+            resultado = conexion.consultarRegistros("Select Id_Asignatura from asignaturas");
+            try {
+                prounivBL datos = obtenerDatos();
+                while (resultado.next()) {
+                    if (datos.getId_asig().equals(resultado.getString("Id_Asignatura"))) {
+                        String strSentenciaInsert = String.format
+        ("UPDATE `asignaturas` SET `Nombre` = '%s' WHERE Id_Asignatura = '%s'", datos.getNombre_asig(), datos.getId_asig());
+                        conexion.ejecutarSentenciaSQL(strSentenciaInsert);
+                        this.limpiarTabla();
+                        this.mostrarDatos();//actualizamos la tabla
+                        this.LimpiarGUI();
+                    }
+                    /*    
+                        JOptionPane.showMessageDialog(null, "No se encuentra algún identificador similar a " + datos.getId_asig());
+                        return;
+                    } else {                        
+                        JOptionPane.showMessageDialog(null, "No se encuentra algún identificador similar a " + datos.getId_asig());
+                        return;
+                    }*/
+                }
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int res =JOptionPane.showConfirmDialog(null, "¿Desea eliminar este campo?");
+        if(res == 0){   
+            prounivBL datos = obtenerDatos();
+
+            String strSentenciaInsert = String.format("DELETE FROM `asignaturas` WHERE `Id_Asignatura` = %s", datos.getId_asig());
+            conexion.ejecutarSentenciaSQL(strSentenciaInsert);//hace consulta y agrega a la tabla
+            this.limpiarTabla();
+            this.mostrarDatos();
+            this.LimpiarGUI();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     void LimpiarGUI(){
         txt_Id_Asignatura.setText("");            
