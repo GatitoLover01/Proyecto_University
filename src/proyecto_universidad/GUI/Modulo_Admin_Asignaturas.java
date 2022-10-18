@@ -52,7 +52,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_Id_Asignatura = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -130,13 +129,20 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel5.setText("ASIGNATURAS");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 560, 40));
 
+        jButton10.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton10.setText("REGRESAR");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton10.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, -1, 50));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 150, 30));
 
         tbAsignaturas.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         tbAsignaturas.setModel(new javax.swing.table.DefaultTableModel(
@@ -260,21 +266,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 10));
 
-        jPanel8.setBackground(new java.awt.Color(135, 135, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel6.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 280, 10));
-
         jLabel1.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel1.setText("Id Asignatura:");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -309,8 +300,8 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        Login lg = new Login();
-        lg.setVisible(true);
+        Modulo_Administrador mdAdm = new Modulo_Administrador();
+        mdAdm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -492,7 +483,6 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbAsignaturas;
     private javax.swing.JTextField txt_Creditos;
