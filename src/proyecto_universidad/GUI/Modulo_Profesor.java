@@ -5,6 +5,8 @@
  */
 package proyecto_universidad.GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisl
@@ -16,6 +18,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
      */
     public Modulo_Profesor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,7 +34,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         Horario = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         Calificaciones = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Botones = new javax.swing.JPanel();
@@ -55,8 +58,8 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
         jLabel14.setText("¡Bienvenido Profesor!");
 
-        jTable1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -64,7 +67,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                 "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabla);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -175,7 +178,12 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         );
 
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton2.setText("Regresar");
+        jButton2.setText("Cerrar sesión");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
         Horario.setLayout(HorarioLayout);
@@ -189,7 +197,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -283,6 +291,16 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // cerrar sesion
+        int res=JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if(res == 0){
+            Login lg =new Login();
+            lg.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,6 +342,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel Encabezado3;
     private javax.swing.JPanel Horario;
     private javax.swing.JPanel Principal;
+    private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -337,6 +356,5 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
