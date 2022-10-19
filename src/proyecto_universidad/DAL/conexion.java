@@ -24,7 +24,6 @@ public class conexion {
             conn = (Connection)DriverManager.getConnection(strConexionDB, user, pass);
             
             System.out.println("Conexion establecida");
-            
         } catch (Exception e) {
             System.out.println("Conexion erronea " + e);
         }

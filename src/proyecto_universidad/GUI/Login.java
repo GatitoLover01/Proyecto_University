@@ -56,7 +56,7 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(229, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(135, 135, 255));
@@ -122,6 +122,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 150, -1));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/CajaInicioSesion.png"))); // NOI18N
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -147,10 +148,11 @@ public class Login extends javax.swing.JFrame {
                                 && datos.getContraseña().equals(resultado.getString("Contrasena"))) {
                             //System.out.println("El usuario  prof y contraseña es correcto");
                             resultado = conexion.consultarRegistros("SELECT Id_categoria FROM profesores WHERE Matricula_profesor = " + "'" + datos.getMatricula() + "'");
-                            //dispose(); //cierro ventana actual
                             //System.out.println("SELECT Id_categoria FROM profesores WHERE Matricula_profesor = " + "'" + datos.getMatricula() + "'");
-                            while (resultado.next()) {
-                                switch (resultado.getInt("Id_categoria")) {
+                            while (resultado.next()) {                                
+                                int cat = resultado.getInt("Id_categoria");
+                                //System.out.println(cat);
+                                switch (cat) {
                                     case 1:
                                         Modulo_Administrador mod_ADM = new Modulo_Administrador();//creo un objeto de Menu principal
                                         mod_ADM.setVisible(true);
@@ -165,7 +167,8 @@ public class Login extends javax.swing.JFrame {
                             }
                         }
                     } catch (Exception e) {
-                        System.out.println("BUSQUEDA FALLIDA");
+                        JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos. \n"
+                                + "Error: " + e);
                     }
                 }
             }
