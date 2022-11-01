@@ -5,6 +5,8 @@
  */
 package proyecto_universidad.GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author erick
@@ -123,8 +125,9 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 120));
 
+        jButton1.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton1.setText("PREREINSCRIPCIÓN");
+        jButton1.setText("Pre reinscripción");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -139,8 +142,9 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 150, 30));
 
+        jButton2.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton2.setText("REINSCRIPCIÓN");
+        jButton2.setText("Reinscripción");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -155,8 +159,9 @@ public class Modulo_Administrador extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 150, 30));
 
+        jButton3.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton3.setText("GRUPOS");
+        jButton3.setText("Grupos");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
@@ -173,7 +178,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton4.setText("ASIGNATURAS");
+        jButton4.setText("Asignaturas");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
@@ -190,7 +195,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton5.setText("PROFESORES");
+        jButton5.setText("Profesores");
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
@@ -207,7 +212,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton6.setText("HORARIOS");
+        jButton6.setText("Horarios");
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
         jButton6.setContentAreaFilled(false);
@@ -224,7 +229,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton7.setText("DOCUMENTOS");
+        jButton7.setText("Documentos");
         jButton7.setBorder(null);
         jButton7.setBorderPainted(false);
         jButton7.setContentAreaFilled(false);
@@ -241,7 +246,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton8.setText("ALUMNOS");
+        jButton8.setText("Alumnos");
         jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
         jButton8.setContentAreaFilled(false);
@@ -258,7 +263,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton9.setText("HORARIOS");
+        jButton9.setText("Horarios");
         jButton9.setBorder(null);
         jButton9.setBorderPainted(false);
         jButton9.setContentAreaFilled(false);
@@ -310,7 +315,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 150, 30));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 140, 150, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/barra.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 990, 10));
@@ -328,9 +333,12 @@ public class Modulo_Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-//        Login lg = new Login();
-    //    lg.setVisible(true);
-        this.dispose();
+        int res=JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if(res == 0){
+            Login lg =new Login();
+            lg.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

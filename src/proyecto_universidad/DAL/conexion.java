@@ -12,7 +12,7 @@ public class conexion {
     
     String strConexionDB = "jdbc:mysql://db4free.net:3306/universidad_proy";
     String user = "gatitolover01";
-    String pass = "equipoGl01";
+    String pass = "EquipoGl01";
     Connection conn = null;
     
     public conexion(){

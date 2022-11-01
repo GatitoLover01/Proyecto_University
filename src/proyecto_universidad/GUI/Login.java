@@ -99,13 +99,13 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel3.setText("Matrícula");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        jPanel4.add(inputMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 150, -1));
+        jPanel4.add(inputMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jLabel4.setText("Contraseña");
         jLabel4.setToolTipText("");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-        jPanel4.add(inputContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, -1));
+        jPanel4.add(inputContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 200, -1));
 
         jButton1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
