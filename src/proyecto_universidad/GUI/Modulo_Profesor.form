@@ -82,7 +82,7 @@
                           </Group>
                           <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                       <Component id="Calificaciones" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
