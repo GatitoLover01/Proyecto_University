@@ -5,17 +5,27 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import proyecto_univerisdad.BL.prounivBL;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
  * @author Dulce
  */
 public class Modulo_Horario extends javax.swing.JFrame {
 
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
     /**
      * Creates new form Modulo_Horario
      */
     public Modulo_Horario() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        mostrarDatos();
     }
 
     /**
@@ -31,7 +41,7 @@ public class Modulo_Horario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbHorario = new javax.swing.JTable();
         Datos = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -45,8 +55,8 @@ public class Modulo_Horario extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         Encabezado3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -59,12 +69,17 @@ public class Modulo_Horario extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel5.setText("Administración de horarios.");
 
-        jTable1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbHorario.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        tbHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -84,7 +99,7 @@ public class Modulo_Horario extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbHorario);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -159,11 +174,21 @@ public class Modulo_Horario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton1.setText("Guardar");
+        btnGuardar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton3.setText("Eliminar");
+        btnEliminar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DatosLayout = new javax.swing.GroupLayout(Datos);
         Datos.setLayout(DatosLayout);
@@ -187,9 +212,9 @@ public class Modulo_Horario extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
             .addGroup(DatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(btnEliminar)
                 .addContainerGap())
         );
         DatosLayout.setVerticalGroup(
@@ -218,8 +243,8 @@ public class Modulo_Horario extends javax.swing.JFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -231,15 +256,12 @@ public class Modulo_Horario extends javax.swing.JFrame {
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HorarioLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel5))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel5))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
@@ -251,9 +273,9 @@ public class Modulo_Horario extends javax.swing.JFrame {
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel5)
-                        .addGap(122, 122, 122)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addContainerGap()
@@ -338,6 +360,43 @@ public class Modulo_Horario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Modulo_Administrador mdAdm = new Modulo_Administrador();
+        mdAdm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    void mostrarDatos() {
+        String sql = "SELECT grupos.Id_Grupo, asignaturas.Nombre, profesores.Matricula_profesor, grupos.Aula FROM grupos, asignaturas, profesores";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] horario = new Object[4];
+            modelo = (DefaultTableModel) tbHorario.getModel();
+            while (rs.next()) {
+                horario[0] = rs.getString("grupos.Id_Grupo");
+                horario[1] = rs.getString("asignaturas.Nombre");
+                horario[2] = rs.getString("profesores.Matricula_profesor");
+                horario[3] = rs.getString("grupos.Aula");
+                /*horario[4] = rs.getString("");
+                horario[5] = rs.getString("");
+                horario[6] = rs.getString("");
+                horario[7] = rs.getString("");
+                horario[8] = rs.getString("");*/
+                modelo.addRow(horario);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -392,9 +451,9 @@ public class Modulo_Horario extends javax.swing.JFrame {
     private javax.swing.JPanel Datos;
     private javax.swing.JPanel Encabezado3;
     private javax.swing.JPanel Horario;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -409,10 +468,10 @@ public class Modulo_Horario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tbHorario;
     // End of variables declaration//GEN-END:variables
 }
