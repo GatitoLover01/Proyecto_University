@@ -5,17 +5,29 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
  * @author luisl
  */
 public class Modulo_Admin_Profesor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modulo_Admin_Profesor
-     */
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
+
     public Modulo_Admin_Profesor() {
         initComponents();
+        setLocationRelativeTo(null);
+        mostrarDatos();
+        cbx_gen(cbx_genero);
+        cbx_cat(cbx_categoria);
     }
 
     /**
@@ -35,30 +47,30 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Contenido = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         Datos = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_matricula = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_Apat = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_Amat = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_pass = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbx_genero = new javax.swing.JComboBox<>();
+        cbx_categoria = new javax.swing.JComboBox<>();
         Botones = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -110,8 +122,8 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
 
         Contenido.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -119,12 +131,17 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 "Matrícula", "Nombre", "Apellido paterno", "Apellido materno", "Contraseña", "Género", "Categoría"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(35);
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Tabla);
+        if (Tabla.getColumnModel().getColumnCount() > 0) {
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(35);
         }
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -150,51 +167,51 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 7, Short.MAX_VALUE)
+            .addGap(0, 17, Short.MAX_VALUE)
         );
 
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel4.setText("Matrícula:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_matricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_matriculaActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel1.setText("Nombre:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel7.setText("Apellido paterno:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_Apat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_ApatActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel9.setText("Apellido materno:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_Amat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_AmatActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel10.setText("Contraseña:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txt_pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txt_passActionPerformed(evt);
             }
         });
 
@@ -204,9 +221,11 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel12.setText("Categoria:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar género", "Hombre", "Mujer" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opción", "Profesor", " " }));
+        cbx_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_categoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DatosLayout = new javax.swing.GroupLayout(Datos);
         Datos.setLayout(DatosLayout);
@@ -219,18 +238,18 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txt_Amat, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txt_Apat, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_matricula, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(cbx_genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbx_categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
         DatosLayout.setVerticalGroup(
@@ -240,74 +259,83 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(jLabel7)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Apat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_Amat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbx_genero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addGap(4, 4, 4)
+                .addComponent(cbx_categoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Botones.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton5.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton5.setText("Ingresar");
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-
-        jButton6.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton6.setText("Actualizar");
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setInheritsPopupMenu(true);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_ingresar.setText("Ingresar");
+        btn_ingresar.setContentAreaFilled(false);
+        btn_ingresar.setFocusPainted(false);
+        btn_ingresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_ingresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_ingresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setInheritsPopupMenu(true);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_actualizar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_actualizar.setText("Actualizar");
+        btn_actualizar.setContentAreaFilled(false);
+        btn_actualizar.setFocusPainted(false);
+        btn_actualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_actualizar.setInheritsPopupMenu(true);
+        btn_actualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_actualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
+
+        btn_eliminar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setBorder(null);
+        btn_eliminar.setBorderPainted(false);
+        btn_eliminar.setContentAreaFilled(false);
+        btn_eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_eliminar.setFocusPainted(false);
+        btn_eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_eliminar.setInheritsPopupMenu(true);
+        btn_eliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_eliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
@@ -315,11 +343,11 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         BotonesLayout.setVerticalGroup(
@@ -327,17 +355,22 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_ingresar)
+                    .addComponent(btn_actualizar)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel5.setText("Administración de docencia.");
 
-        jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton1.setText("Regresar");
+        btn_regresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_regresar.setText("Regresar");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContenidoLayout = new javax.swing.GroupLayout(Contenido);
         Contenido.setLayout(ContenidoLayout);
@@ -348,12 +381,13 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
-                    .addComponent(jButton1)
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Botones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))))
+                        .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_regresar)
+                            .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Botones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -365,10 +399,10 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
             .addComponent(Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -403,29 +437,199 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_matriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_matriculaActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_ApatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ApatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_ApatActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_AmatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AmatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_AmatActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txt_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txt_passActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        // BOTON ACTUALIZAR
+        String matricula = txt_matricula.getText();
+        String nombre = txt_nombre.getText();
+        String apat = txt_Apat.getText();
+        String amat = txt_Amat.getText();
+        String pass = txt_pass.getText();
+        String genero = cbx_genero.getSelectedItem().toString();
+        String categoria = cbx_categoria.getSelectedItem().toString();
+
+        try {
+
+            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero.equals("") || categoria.equals("")) {
+                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
+            } else {
+                String sql = String.format("UPDATE `grupos` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s' ,`Contrasena` = '%s',`Id_genero` = '%s',`Id_categoria` = '%s' WHERE Matricula_profesor = '%s'",nombre, apat, amat, pass, genero, categoria, matricula);
+                conexion.ejecutarSentenciaSQL(sql);
+                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
+                this.limpiarTabla();
+                this.mostrarDatos();//actualizamos la tabla
+                this.LimpiarGUI();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
+        // Evento al seleccionar fila de la tabla
+        if (evt.getClickCount() == -1) {
+            JOptionPane.showMessageDialog(this, "No se seleccionó fila");
+
+        } else {
+            JTable receptor = (JTable) evt.getSource();
+            txt_matricula.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            txt_nombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            txt_Apat.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            txt_Amat.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            txt_pass.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            cbx_genero.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5));
+            cbx_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6));
+
+        }
+    }//GEN-LAST:event_TablaMouseClicked
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        // BOTON DE REGRESAR A ADMINISTRADOR
+        int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de administración de 'Docencia'?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if (res == 0) {
+            Modulo_Administrador Admin = new Modulo_Administrador();
+            Admin.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void cbx_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_cbx_categoriaActionPerformed
+
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+        // BOTON INGRESAR DATOS
+        String matricula = txt_matricula.getText();
+        String nombre = txt_nombre.getText();
+        String apat = txt_Apat.getText();
+        String amat = txt_Amat.getText();
+        String pass = txt_pass.getText();
+        String genero = cbx_genero.getSelectedItem().toString();
+        String categoria = cbx_categoria.getSelectedItem().toString();
+
+        try {
+
+            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero.equals("") || categoria.equals("")) {
+                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
+            } else {
+                String sql = String.format("INSERT INTO `profesores`(`Matricula_profesor`,`Nombre`,`Apellido_paterno`,`Apellido_materno`,`Contrasena`,`Id_genero`,`Id_categoria`) "
+                        + "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", matricula, nombre, apat, amat, pass, genero, categoria);
+                conexion.ejecutarSentenciaSQL(sql);
+                JOptionPane.showMessageDialog(this, "Datos agregados correctamente");
+                this.limpiarTabla();
+                this.mostrarDatos();//actualizamos la tabla
+                this.LimpiarGUI();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_ingresarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        // BOTON ELIMINAR
+        String matricula = txt_matricula.getText();
+        int fila = Tabla.getSelectedRow();
+        try {
+            if (fila < 0) {
+                JOptionPane.showMessageDialog(this, "Fila no seleccionada");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este campo?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+                if (res == 0) {
+                    String sql = String.format("DELETE FROM `profesores` WHERE Matricula_profesor = '%s'", matricula);
+                    conexion.ejecutarSentenciaSQL(sql);//hace consulta y agrega a la tabla
+                    this.limpiarTabla();
+                    this.mostrarDatos();
+                    this.LimpiarGUI();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    //METODOS
+    void LimpiarGUI() {
+        txt_matricula.setText("");
+        txt_nombre.setText("");
+        txt_Apat.setText("");
+        txt_Amat.setText("");
+        txt_pass.setText("");
+        cbx_genero.setSelectedIndex(0);
+        cbx_categoria.setSelectedIndex(0);
+    }
+
+    void limpiarTabla() {
+        modelo.setNumRows(0);
+    }
+
+    void mostrarDatos() {
+        String sql = "Select * from profesores";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] profesores = new Object[7];
+            modelo = (DefaultTableModel) Tabla.getModel();
+            while (rs.next()) {
+                profesores[0] = rs.getString("Matricula_profesor");
+                profesores[1] = rs.getString("Nombre");
+                profesores[2] = rs.getString("Apellido_paterno");
+                profesores[3] = rs.getString("Apellido_materno");
+                profesores[4] = rs.getString("Contrasena");
+                profesores[5] = rs.getInt("Id_genero");
+                profesores[6] = rs.getInt("Id_categoria");
+                modelo.addRow(profesores);
+            }
+            
+            //Tabla.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
+
+    //METODO PARA CARGAR ITEMS DEL COMBO BOX DE GENERO
+    void cbx_gen(JComboBox cbx) {
+        String sql = "Select Id_genero from genero";
+
+        try {
+            ResultSet rs = conexion.consultarRegistros(sql);
+            cbx.addItem("Seleccione una opción");
+            while (rs.next()) {
+
+                cbx.addItem(rs.getString("Id_genero"));
+
+            }
+        } catch (SQLException e) {
+        }
+    }
+
+    void cbx_cat(JComboBox cbx) {
+        String sql = "Select Id_Categoria from categoria";
+
+        try {
+            ResultSet rs = conexion.consultarRegistros(sql);
+            cbx.addItem("Seleccione una opción");
+            while (rs.next()) {
+
+                cbx.addItem(rs.getString("Id_Categoria"));
+
+            }
+        } catch (SQLException e) {
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -468,12 +672,13 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel Datos;
     private javax.swing.JPanel Encabezado;
     private javax.swing.JPanel Principal;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JTable Tabla;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_regresar;
+    private javax.swing.JComboBox<String> cbx_categoria;
+    private javax.swing.JComboBox<String> cbx_genero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -489,11 +694,10 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txt_Amat;
+    private javax.swing.JTextField txt_Apat;
+    private javax.swing.JTextField txt_matricula;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_pass;
     // End of variables declaration//GEN-END:variables
 }
