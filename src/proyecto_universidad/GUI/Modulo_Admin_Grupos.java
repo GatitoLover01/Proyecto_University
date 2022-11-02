@@ -5,17 +5,28 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
  * @author luisl
  */
 public class Modulo_Admin_Grupos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modulo_Admin_Grupos
-     */
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
+
     public Modulo_Admin_Grupos() {
         initComponents();
+        setLocationRelativeTo(null);
+        mostrarDatos();
+        cbx_asig(cbx_asignatura);
     }
 
     /**
@@ -35,24 +46,24 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Contenido = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tb_grupo = new javax.swing.JTable();
         Datos = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_idgrupo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_aula = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_capacidad = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        cbx_asignatura = new javax.swing.JComboBox<>();
         Botones = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -104,8 +115,8 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
 
         Contenido.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tb_grupo.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        Tb_grupo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -113,7 +124,12 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                 "Id grupo", "Aula", "Capacidad", "Asignatura"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        Tb_grupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tb_grupoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Tb_grupo);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -144,38 +160,32 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel4.setText("Id grupo:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_idgrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_idgrupoActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel1.setText("Aula:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_aula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_aulaActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel7.setText("Capacidad:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_capacidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_capacidadActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel9.setText("Asignatura:");
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout DatosLayout = new javax.swing.GroupLayout(Datos);
         Datos.setLayout(DatosLayout);
@@ -185,15 +195,15 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(DatosLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_aula, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_idgrupo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(cbx_asignatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DatosLayout.setVerticalGroup(
@@ -203,56 +213,66 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_idgrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_aula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbx_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Botones.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton5.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton5.setText("Ingresar");
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-
-        jButton6.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton6.setText("Actualizar");
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_ingresar.setText("Ingresar");
+        btn_ingresar.setContentAreaFilled(false);
+        btn_ingresar.setFocusPainted(false);
+        btn_ingresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_ingresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_ingresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setContentAreaFilled(false);
-        jButton2.setFocusPainted(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_actualizar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_actualizar.setText("Actualizar");
+        btn_actualizar.setContentAreaFilled(false);
+        btn_actualizar.setFocusPainted(false);
+        btn_actualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_actualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_actualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
+
+        btn_eliminar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setContentAreaFilled(false);
+        btn_eliminar.setFocusPainted(false);
+        btn_eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_eliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_eliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
@@ -260,11 +280,11 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
         BotonesLayout.setVerticalGroup(
@@ -272,17 +292,22 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton2))
+                    .addComponent(btn_ingresar)
+                    .addComponent(btn_actualizar)
+                    .addComponent(btn_eliminar))
                 .addContainerGap())
         );
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel5.setText("Administración de grupos.");
 
-        jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton1.setText("Regresar");
+        btn_regresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_regresar.setText("Regresar");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContenidoLayout = new javax.swing.GroupLayout(Contenido);
         Contenido.setLayout(ContenidoLayout);
@@ -293,7 +318,7 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
-                    .addComponent(jButton1)
+                    .addComponent(btn_regresar)
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -314,7 +339,7 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                        .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,25 +380,161 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_idgrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idgrupoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_idgrupoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_aulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_aulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_aulaActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_capacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_capacidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_capacidadActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        // Boton de actualizar
+        String id_grupo = txt_idgrupo.getText();
+        String aula = txt_aula.getText();
+        String capacidad = txt_capacidad.getText();
+        String asignatura = cbx_asignatura.getSelectedItem().toString();
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        try {
+
+            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura.equals("")) {
+                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
+            } else {
+                String sql = String.format("UPDATE `grupos` SET `Aula` = '%s',`Capacidad` = '%s',`Asignaturas_Id_Asignatura` = '%s' WHERE Id_Grupo = '%s'", aula, capacidad, asignatura, id_grupo);
+                conexion.ejecutarSentenciaSQL(sql);
+                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
+                this.limpiarTabla();
+                this.mostrarDatos();//actualizamos la tabla
+                this.LimpiarGUI();
+            }
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void Tb_grupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_grupoMouseClicked
+        //evento al darle clic a una fila de la tabla
+        //int fila=Tb_grupo.getSelectedRow();
+        if (evt.getClickCount() == -1) {
+            JOptionPane.showMessageDialog(this, "No se seleccionó fila");
+
+        } else {
+            JTable receptor = (JTable) evt.getSource();
+            txt_idgrupo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            txt_aula.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            txt_capacidad.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            cbx_asignatura.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3));
+
+        }
+    }//GEN-LAST:event_Tb_grupoMouseClicked
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        // regresar a administrador
+        int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de administración de 'Grupos'?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if (res == 0) {
+            Modulo_Administrador Admin = new Modulo_Administrador();
+            Admin.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+        // BOTON DE AGREGAR
+        //Creamos variables para colocar la nueva informacion a ingresar.
+        String id_grupo = txt_idgrupo.getText();
+        String aula = txt_aula.getText();
+        String capacidad = txt_capacidad.getText();
+        String asignatura = cbx_asignatura.getSelectedItem().toString();
+
+        try {
+
+            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura.equals("")) {
+                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
+            } else {
+                String sql=String.format("INSERT INTO `grupos`(`Id_Grupo`,`Aula`,`Capacidad`,`Asignaturas_Id_Asignatura`) "
+                                + "VALUES ('%s', '%s', '%s', '%s')", id_grupo, aula, capacidad,asignatura);
+                conexion.ejecutarSentenciaSQL(sql);
+                JOptionPane.showMessageDialog(this, "Datos agregados correctamente");
+                this.limpiarTabla();
+                this.mostrarDatos();//actualizamos la tabla
+                this.LimpiarGUI();
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btn_ingresarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        //Boton eliminar
+        String id_grupo = txt_idgrupo.getText();
+        int fila = Tb_grupo.getSelectedRow();
+        try {
+            if (fila < 0) {
+                JOptionPane.showMessageDialog(this, "Fila no seleccionada");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este campo?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+                if (res == 0) {
+                    String sql = String.format("DELETE FROM `grupos` WHERE Id_Grupo = '%s'", id_grupo);
+                    conexion.ejecutarSentenciaSQL(sql);//hace consulta y agrega a la tabla
+                    this.limpiarTabla();
+                    this.mostrarDatos();
+                    this.LimpiarGUI();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    //METODOS
+    void LimpiarGUI() {
+        txt_idgrupo.setText("");
+        txt_aula.setText("");
+        txt_capacidad.setText("");
+        cbx_asignatura.setSelectedIndex(0);
+    }
+
+    void limpiarTabla() {
+        modelo.setNumRows(0);
+    }
+
+    void mostrarDatos() {
+        String sql = "Select * from grupos";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] grupos = new Object[4];
+            modelo = (DefaultTableModel) Tb_grupo.getModel();
+            while (rs.next()) {
+                grupos[0] = rs.getString("Id_Grupo");
+                grupos[1] = rs.getString("Aula");
+                grupos[2] = rs.getInt("Capacidad");
+                grupos[3] = rs.getInt("Asignaturas_Id_Asignatura");
+                modelo.addRow(grupos);
+            }
+            //Tb_grupo.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
+
+    //METODO PARA MOSTRAR ITEMS DEL COMBO BOX DE ASIGNATURAS
+    void cbx_asig(JComboBox cbx) {
+        String sql = "Select distinct Id_Asignatura from asignaturas";
+
+        try {
+            ResultSet rs = conexion.consultarRegistros(sql);
+            cbx.addItem("Seleccione una opción");
+            while (rs.next()) {
+
+                cbx.addItem(rs.getInt("Id_Asignatura"));
+
+            }
+        } catch (SQLException e) {
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -416,10 +577,12 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
     private javax.swing.JPanel Datos;
     private javax.swing.JPanel Encabezado;
     private javax.swing.JPanel Principal;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JTable Tb_grupo;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_regresar;
+    private javax.swing.JComboBox<String> cbx_asignatura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -432,10 +595,8 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txt_aula;
+    private javax.swing.JTextField txt_capacidad;
+    private javax.swing.JTextField txt_idgrupo;
     // End of variables declaration//GEN-END:variables
 }
