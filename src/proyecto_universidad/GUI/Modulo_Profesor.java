@@ -178,7 +178,15 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         );
 
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton2.setText("Cerrar sesión");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setFocusPainted(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -196,8 +204,9 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                         .addComponent(jLabel14))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2))
+                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

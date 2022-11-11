@@ -10,9 +10,15 @@ import java.sql.ResultSet;
  */
 public class conexion {
     
+    /*Conexión con DBFREE
     String strConexionDB = "jdbc:mysql://db4free.net:3306/universidad_proy";
     String user = "gatitolover01";
     String pass = "EquipoGl01";
+    */
+    //Conexion con RemoteMySQL
+    String strConexionDB = "jdbc:mysql://remotemysql.com:3306/FgQKdPudUJ";
+    String user = "FgQKdPudUJ";
+    String pass = "ew5EoQKp3s";
     Connection conn = null;
     
     public conexion(){
