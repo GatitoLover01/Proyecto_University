@@ -167,7 +167,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 17, Short.MAX_VALUE)
+            .addGap(0, 6, Short.MAX_VALUE)
         );
 
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
@@ -278,13 +278,13 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbx_genero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addGap(1, 1, 1)
+                .addComponent(cbx_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(cbx_categoria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(cbx_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -365,7 +365,16 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         jLabel5.setText("Administración de docencia.");
 
         btn_regresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         btn_regresar.setText("Regresar");
+        btn_regresar.setBorder(null);
+        btn_regresar.setBorderPainted(false);
+        btn_regresar.setContentAreaFilled(false);
+        btn_regresar.setFocusPainted(false);
+        btn_regresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_regresar.setInheritsPopupMenu(true);
+        btn_regresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_regresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_regresarActionPerformed(evt);
@@ -394,16 +403,18 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         ContenidoLayout.setVerticalGroup(
             ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContenidoLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
-            .addComponent(Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenidoLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout PrincipalLayout = new javax.swing.GroupLayout(Principal);
@@ -419,8 +430,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(Encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addComponent(Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,7 +441,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -472,7 +482,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
             if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero.equals("") || categoria.equals("")) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
-                String sql = String.format("UPDATE `grupos` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s' ,`Contrasena` = '%s',`Id_genero` = '%s',`Id_categoria` = '%s' WHERE Matricula_profesor = '%s'",nombre, apat, amat, pass, genero, categoria, matricula);
+                String sql = String.format("UPDATE `profesores` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s' ,`Contrasena` = '%s',`Id_genero` = '%s',`Id_categoria` = '%s' WHERE Matricula_profesor = '%s'",nombre, apat, amat, pass, genero, categoria, matricula);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 this.limpiarTabla();
@@ -603,13 +613,13 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
     //METODO PARA CARGAR ITEMS DEL COMBO BOX DE GENERO
     void cbx_gen(JComboBox cbx) {
         String sql = "Select Id_genero from genero";
-
+        cbx.addItem("Seleccione una opción");
         try {
             ResultSet rs = conexion.consultarRegistros(sql);
-            cbx.addItem("Seleccione una opción");
+            
             while (rs.next()) {
 
-                cbx.addItem(rs.getString("Id_genero"));
+                cbx.addItem(rs.getInt("Id_genero"));
 
             }
         } catch (SQLException e) {
@@ -617,14 +627,14 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
     }
 
     void cbx_cat(JComboBox cbx) {
-        String sql = "Select Id_Categoria from categoria";
-
+        String sql = "Select Id_Categoria from categoria where Id_Categoria=1 or Id_Categoria=2";
+        cbx.addItem("Seleccione una opción");
         try {
             ResultSet rs = conexion.consultarRegistros(sql);
-            cbx.addItem("Seleccione una opción");
+            
             while (rs.next()) {
 
-                cbx.addItem(rs.getString("Id_Categoria"));
+                cbx.addItem(rs.getInt("Id_Categoria"));
 
             }
         } catch (SQLException e) {
