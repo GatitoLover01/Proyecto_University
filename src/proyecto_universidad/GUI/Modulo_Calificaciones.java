@@ -283,9 +283,10 @@ DefaultTableModel modelo;
     private void cboGruposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboGruposItemStateChanged
         // TODO add your handling code here:
         String asignatura = (String)cboGrupos.getSelectedItem();
-        
+        System.out.println(asignatura);
+        //filtrar(asignatura);
         /*se hace nuevamente la consulta*/
-         String sql = "SELECT Nombre FROM asignaturas";
+        /* String sql = "SELECT Nombre FROM asignaturas";
         ResultSet rs = conexion.consultarRegistros(sql);
         String aux="";
         try{
@@ -297,9 +298,31 @@ DefaultTableModel modelo;
         System.out.println(aux);
         if(asignatura.equals("")){
             
-        }
+        }*/
     }//GEN-LAST:event_cboGruposItemStateChanged
 
+    private void filtrar(String seleccion){
+        String sql = "SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and asignaturas.Nombre='"+seleccion+"' ";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] horario = new Object[9];
+            modelo = (DefaultTableModel) tbCalificacion.getModel();
+            while (rs.next()) {
+                horario[0] = rs.getString("calificaciones.Alumnos_Matricula_alumno");
+                horario[1] = rs.getString("alumnos.Nombre");
+                horario[2] = rs.getString("carreras.Nombre");
+                horario[3] = rs.getString("asignaturas.Nombre");
+                horario[4] = rs.getFloat("calificaciones.Parcial_1");
+                horario[5] = rs.getFloat("calificaciones.Parcial_2");
+                horario[6] = rs.getFloat("calificaciones.Parcial_3");
+                horario[7] = rs.getFloat("calificaciones.Ordinario");
+                horario[8] = rs.getFloat("calificaciones.Extraordinario");
+                modelo.addRow(horario);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
     private void mostrarDatosCBOBOX(){
         cboGrupos.addItem("Todas las asignaturas");
         String sql = "SELECT Nombre FROM asignaturas";
