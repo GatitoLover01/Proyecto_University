@@ -5,17 +5,29 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
- * @author Dulce
+ * @author Adry
  */
 public class Modulo_Calificaciones extends javax.swing.JFrame {
-
+DefaultTableModel modelo;
+    conexion conexion = new conexion();
     /**
      * Creates new form Modulo_Calificaciones
      */
     public Modulo_Calificaciones() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        
+        /*Añadir valores al combo box*/
+        mostrarDatosCBOBOX();
+        
+        mostrarDatos();
+        
     }
 
     /**
@@ -36,9 +48,9 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboGrupos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbCalificacion = new javax.swing.JTable();
         Encabezado3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -82,7 +94,7 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BotonesLayout.setVerticalGroup(
@@ -117,7 +129,7 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalificacionesLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(CalificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
@@ -139,35 +151,35 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton2.setText("Regresar");
 
-        jComboBox1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grupos", "6A17", "7A17", "8A17" }));
+        cboGrupos.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        cboGrupos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboGruposItemStateChanged(evt);
+            }
+        });
+        cboGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboGruposActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbCalificacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Matricula", "Carrera", "Nombre", "Apellido Paterno", "Apellido Materno", "Calificación"
+                "Matricula", "Nombre", "Carrera", "Asignatura", "Parcial 1", "Parcial 2", "Parcial 3", "Ordinario", "Extraordinario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbCalificacion);
 
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
         Horario.setLayout(HorarioLayout);
@@ -177,16 +189,14 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         HorarioLayout.setVerticalGroup(
             HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,12 +206,11 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Encabezado3.setBackground(new java.awt.Color(204, 204, 204));
@@ -266,6 +275,66 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void cboGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGruposActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboGruposActionPerformed
+
+    private void cboGruposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboGruposItemStateChanged
+        // TODO add your handling code here:
+        String asignatura = (String)cboGrupos.getSelectedItem();
+        
+        /*se hace nuevamente la consulta*/
+         String sql = "SELECT Nombre FROM asignaturas";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        String aux="";
+        try{
+            while (rs.next()) {
+               aux = rs.getString("Nombre");    
+            }
+        }catch(Exception e){}
+        
+        System.out.println(aux);
+        if(asignatura.equals("")){
+            
+        }
+    }//GEN-LAST:event_cboGruposItemStateChanged
+
+    private void mostrarDatosCBOBOX(){
+        cboGrupos.addItem("Todas las asignaturas");
+        String sql = "SELECT Nombre FROM asignaturas";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            
+            while (rs.next()) {
+               cboGrupos.addItem(rs.getString("Nombre"));     
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
+     void mostrarDatos() {
+        String sql = "SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] horario = new Object[9];
+            modelo = (DefaultTableModel) tbCalificacion.getModel();
+            while (rs.next()) {
+                horario[0] = rs.getString("calificaciones.Alumnos_Matricula_alumno");
+                horario[1] = rs.getString("alumnos.Nombre");
+                horario[2] = rs.getString("carreras.Nombre");
+                horario[3] = rs.getString("asignaturas.Nombre");
+                horario[4] = rs.getFloat("calificaciones.Parcial_1");
+                horario[5] = rs.getFloat("calificaciones.Parcial_2");
+                horario[6] = rs.getFloat("calificaciones.Parcial_3");
+                horario[7] = rs.getFloat("calificaciones.Ordinario");
+                horario[8] = rs.getFloat("calificaciones.Extraordinario");
+                modelo.addRow(horario);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -321,10 +390,10 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
     private javax.swing.JPanel Calificaciones;
     private javax.swing.JPanel Encabezado3;
     private javax.swing.JPanel Horario;
+    private javax.swing.JComboBox<String> cboGrupos;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -333,6 +402,6 @@ public class Modulo_Calificaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbCalificacion;
     // End of variables declaration//GEN-END:variables
 }

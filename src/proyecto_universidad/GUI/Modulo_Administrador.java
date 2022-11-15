@@ -368,7 +368,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Modulo_Horario modHorario = new Modulo_Horario();
+        Modulo_Admin_Horarios_P modHorario = new Modulo_Admin_Horarios_P();
         modHorario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
