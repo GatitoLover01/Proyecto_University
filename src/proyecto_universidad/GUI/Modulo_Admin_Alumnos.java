@@ -6,6 +6,7 @@
 package proyecto_universidad.GUI;
 
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import proyecto_univerisdad.BL.prounivBL;
@@ -19,7 +20,8 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
     conexion conexion = new conexion();
-
+    String matriculaAlum;
+    
     public Modulo_Admin_Alumnos() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -204,7 +206,13 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         Botones.setBackground(new java.awt.Color(153, 153, 255));
 
         jButton6.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton6.setText("Actualizar");
+        jButton6.setContentAreaFilled(false);
+        jButton6.setFocusPainted(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -212,7 +220,18 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton2.setText("Eliminar");
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
@@ -220,10 +239,10 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         BotonesLayout.setVerticalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,10 +255,16 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         );
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
-        jLabel5.setText("Administración de alumnos");
+        jLabel5.setText("Alumnos");
 
         jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton1.setText("Regresar");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -365,19 +390,41 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ContrasenaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        String nombre = txt_Nombre.getText();
+        String apP = txt_ApP.getText();
+        String apM = txt_ApM.getText();
+        String contraseña = txt_Contrasena.getText();
+
+        try {
+            if (nombre.equals("") || apP.equals("") || apM.equals("") || contraseña.equals("")) {
+                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
+            } else {
+                String sql = String.format("UPDATE `alumnos` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s', `Contrasena` = '%s' WHERE Matricula_alumno = '%s'", nombre, apP, apM, contraseña, matriculaAlum);
+                conexion.ejecutarSentenciaSQL(sql);
+                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
+                this.limpiarTabla();
+                this.mostrarDatos();//actualizamos la tabla
+                this.LimpiarGUI();
+            }
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Modulo_Administrador mdAdm = new Modulo_Administrador();
-        mdAdm.setVisible(true);
-        this.dispose();
+        int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de administración de 'alumnos'?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if (res == 0) {
+            Modulo_Administrador Admin = new Modulo_Administrador();
+            Admin.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tb_AlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_AlumnosMouseClicked
         if (evt.getClickCount() == 1) {
             JTable receptor = (JTable) evt.getSource();
 
+            matriculaAlum = receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString();
             txt_Nombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
             txt_ApP.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
             txt_ApM.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
@@ -389,6 +436,27 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_tb_AlumnosMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Boton eliminar
+        
+        int fila = tb_Alumnos.getSelectedRow();
+        try {
+            if (fila < 0) {
+                JOptionPane.showMessageDialog(this, "Fila no seleccionada");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este campo?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+                if (res == 0) {
+                    String sql = String.format("DELETE FROM `alumnos` WHERE Matricula_alumno = '%s'", matriculaAlum);
+                    conexion.ejecutarSentenciaSQL(sql);//hace consulta y agrega a la tabla
+                    this.limpiarTabla();
+                    this.mostrarDatos();
+                    this.LimpiarGUI();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     String GetNameGenero(int Id_Genero){
         
