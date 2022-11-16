@@ -5,17 +5,26 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import proyecto_univerisdad.BL.prounivBL;
+import proyecto_universidad.DAL.conexion;
+
 /**
  *
  * @author Adry Moisés
  */
 public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modulo_Admin_Alumnos
-     */
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
+
     public Modulo_Admin_Alumnos() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        mostrarDatos();
+        FillCBGenero();
     }
 
     /**
@@ -29,20 +38,20 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         Contenido = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_Alumnos = new javax.swing.JTable();
         Datos = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_Nombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_ApP = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_ApM = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_Contrasena = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbGenero = new javax.swing.JComboBox<>();
         Botones = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -59,16 +68,22 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         Contenido.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Alumnos.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        tb_Alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Matrícula", "Nombre", "Apellido paterno", "Apellido materno", "Contraseña", "Género", "Categoría"
+                "Matrícula", "Nombre", "Apellido paterno", "Apellido materno", "Contraseña", "Género"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tb_Alumnos.getTableHeader().setReorderingAllowed(false);
+        tb_Alumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_AlumnosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_Alumnos);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -99,43 +114,43 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel1.setText("Nombre:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_NombreActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel7.setText("Apellido paterno:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_ApP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_ApPActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel9.setText("Apellido materno:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_ApM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_ApMActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jLabel10.setText("Curp");
+        jLabel10.setText("Contraseña:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txt_Contrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txt_ContrasenaActionPerformed(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel11.setText("Género:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar género", "Hombre", "Mujer" }));
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione género" }));
 
         javax.swing.GroupLayout DatosLayout = new javax.swing.GroupLayout(Datos);
         Datos.setLayout(DatosLayout);
@@ -147,15 +162,15 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5)
+                    .addComponent(txt_Contrasena)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField4)
+                    .addComponent(txt_ApM)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField3)
+                    .addComponent(txt_ApP)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2)
+                    .addComponent(txt_Nombre)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, 0, 185, Short.MAX_VALUE))
+                    .addComponent(cbGenero, 0, 185, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
         DatosLayout.setVerticalGroup(
@@ -165,23 +180,23 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jLabel1)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_ApP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_ApM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -225,6 +240,11 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContenidoLayout = new javax.swing.GroupLayout(Contenido);
         Contenido.setLayout(ContenidoLayout);
@@ -236,11 +256,13 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
                     .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContenidoLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -251,9 +273,9 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(61, 61, 61)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ContenidoLayout.createSequentialGroup()
@@ -326,26 +348,124 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_NombreActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_ApPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ApPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_ApPActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_ApMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ApMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_ApMActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txt_ContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ContrasenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txt_ContrasenaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Modulo_Administrador mdAdm = new Modulo_Administrador();
+        mdAdm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tb_AlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_AlumnosMouseClicked
+        if (evt.getClickCount() == 1) {
+            JTable receptor = (JTable) evt.getSource();
+
+            txt_Nombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            txt_ApP.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            txt_ApM.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            txt_Contrasena.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            
+            String _Genero = GetNameGenero(Integer.parseInt(receptor.getModel().getValueAt(receptor.getSelectedRow(),5).toString()));
+            
+            cbGenero.setSelectedItem(_Genero);
+            
+        }
+    }//GEN-LAST:event_tb_AlumnosMouseClicked
+
+    String GetNameGenero(int Id_Genero){
+        
+        String a = null;        
+        String sql = String.format("Select Nombre from genero where Id_genero = '%s' ", Id_Genero);       
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {           
+            while(rs.next()){
+                a = rs.getString("Nombre");
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+        return a;
+    }
+    
+    public prounivBL obtenerDatos() {
+        prounivBL datos = new prounivBL();
+
+        String nombre = txt_Nombre.getText().trim();
+        String apeP = txt_ApP.getText().trim();
+        String apeM = txt_ApM.getText().trim();
+        String contraseña = txt_Contrasena.getText().trim();
+
+        datos.setNombre_asig(nombre);
+        
+
+        return datos;
+    }
+    
+    void FillCBGenero(){
+        String sql= "Select Nombre from genero";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            while(rs.next()){
+               // cbGrado[0]=rs.getInt("idGrado");
+
+               cbGenero.addItem(rs.getString("Nombre"));
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
+    
+    void LimpiarGUI(){
+        txt_Nombre.setText("");            
+        txt_ApP.setText("");           
+        txt_ApM.setText("");          
+        txt_Contrasena.setText("");  
+    }
+    
+    void limpiarTabla(){
+        modelo.setNumRows(0);
+    }
+    
+    void mostrarDatos() {
+        String sql = "Select Matricula_Alumno, Nombre, Apellido_paterno, Apellido_materno, "
+                + "Contrasena, Id_Genero from alumnos";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] asignatura = new Object[6];
+            modelo = (DefaultTableModel) tb_Alumnos.getModel();
+            while (rs.next()) {
+                asignatura[0] = rs.getString("Matricula_Alumno");
+                asignatura[1] = rs.getString("Nombre");
+                asignatura[2] = rs.getString("Apellido_paterno");
+                asignatura[3] = rs.getString("Apellido_materno");
+                asignatura[4] = rs.getString("Contrasena");
+                asignatura[5] = rs.getInt("Id_Genero");
+               
+                
+                modelo.addRow(asignatura);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -386,10 +506,10 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     private javax.swing.JPanel Contenido;
     private javax.swing.JPanel Datos;
     private javax.swing.JPanel Encabezado;
+    private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -403,10 +523,10 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tb_Alumnos;
+    private javax.swing.JTextField txt_ApM;
+    private javax.swing.JTextField txt_ApP;
+    private javax.swing.JTextField txt_Contrasena;
+    private javax.swing.JTextField txt_Nombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -165,7 +165,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/proyecto_universidad/Imagenes/Boton.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pre reinscripci&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="Aspirantes"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
