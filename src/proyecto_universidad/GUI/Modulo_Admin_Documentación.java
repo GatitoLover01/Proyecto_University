@@ -235,8 +235,8 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
             Object[] document = new Object[4];
             modelo = (DefaultTableModel) tbDocumentos.getModel();
             while (rs.next()) {
-                document[0] = rs.getBlob("Acta_nacimiento");
-                document[1] = rs.getString("Curp");
+                document[0] = rs.getString("CurpString");
+                document[1] = rs.getBlob("Acta_nacimiento");
                 document[2] = rs.getBlob("Certificado_preparatorio");
                 document[3] = rs.getString("Cita");
                 modelo.addRow(document);
