@@ -438,8 +438,6 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_AlumnosMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //Boton eliminar
-        
         int fila = tb_Alumnos.getSelectedRow();
         try {
             if (fila < 0) {
@@ -447,6 +445,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             } else {
                 int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este campo?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
                 if (res == 0) {
+                    BorrarDatosAlumno();
                     String sql = String.format("DELETE FROM `alumnos` WHERE Matricula_alumno = '%s'", matriculaAlum);
                     conexion.ejecutarSentenciaSQL(sql);//hace consulta y agrega a la tabla
                     this.limpiarTabla();
@@ -458,6 +457,27 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void BorrarDatosAlumno(){
+        String sqlHRA = String.format("DELETE FROM `horario_alumno` WHERE Alumnos_Matricula_alumno = '%s'", matriculaAlum);
+        conexion.ejecutarSentenciaSQL(sqlHRA);//hace consulta y agrega a la tabla
+        
+        String sqlDC = String.format("DELETE FROM `documentosalumnos` WHERE Alumnos_Matricula_alumno = '%s'", matriculaAlum);
+        conexion.ejecutarSentenciaSQL(sqlDC);//hace consulta y agrega a la tabla
+        
+        String sqlCL = String.format("DELETE FROM `calificaciones` WHERE Alumnos_Matricula_alumno = '%s'", matriculaAlum);
+        conexion.ejecutarSentenciaSQL(sqlCL);//hace consulta y agrega a la tabla
+
+        String sqlPHRA = String.format("DELETE FROM `pre_horarios` WHERE Alumnos_Matricula_alumno = '%s'", matriculaAlum);
+        conexion.ejecutarSentenciaSQL(sqlPHRA);//hace consulta y agrega a la tabla
+
+        String sqlPRIN = String.format("DELETE FROM `pre_reinscripciones` WHERE Alumnos_Matricula_alumno = '%s'", matriculaAlum);
+        conexion.ejecutarSentenciaSQL(sqlPRIN);//hace consulta y agrega a la tabla
+    }
+    
+    public void BorrarDocumentosAlumno(){
+        
+    }
+    
     String GetNameGenero(int Id_Genero){
         
         String a = null;        

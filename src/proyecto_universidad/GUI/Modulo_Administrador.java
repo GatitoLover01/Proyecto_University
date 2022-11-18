@@ -127,7 +127,7 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton1.setText("Pre reinscripción");
+        jButton1.setText("Aspirantes");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
