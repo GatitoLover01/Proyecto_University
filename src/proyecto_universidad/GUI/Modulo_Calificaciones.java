@@ -7,6 +7,7 @@ package proyecto_universidad.GUI;
 
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import proyecto_univerisdad.BL.prounivBL2;
 import proyecto_universidad.DAL.conexion;
@@ -18,6 +19,7 @@ import proyecto_universidad.DAL.conexion;
 public class Modulo_Calificaciones extends javax.swing.JFrame {
 DefaultTableModel modelo;
     conexion conexion = new conexion();
+    String matriculaAlum;
     /**
      * Creates new form Modulo_Calificaciones
      */
@@ -256,6 +258,11 @@ DefaultTableModel modelo;
                 return types [columnIndex];
             }
         });
+        tbCalificacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbCalificacionMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbCalificacion);
 
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
@@ -375,12 +382,13 @@ DefaultTableModel modelo;
         } else {
             ResultSet resultado = null;
             resultado = conexion.consultarRegistros("SELECT Alumnos_Matricula_alumno, Asignaturas_Id_Asignatura FROM calificaciones");
+            
             try {
                 prounivBL2 datos = obtenerDatos();
                 while (resultado.next()) {
-                    if (datos.getMatricula().equals(resultado.getString("Alumnos_Matricula_alumno"))) {
-                        matricula=resultado.getString("Alumnos_Matricula_alumno");
-                        asignatura=resultado.getString("Asignaturas_Id_Asignatura");
+                    matricula=resultado.getString("Alumnos_Matricula_alumno");
+                    asignatura=resultado.getString("Asignaturas_Id_Asignatura");
+                    if (datos.getMatricula().equals(resultado.getString("Alumnos_Matricula_alumno")) && datos.getAsignatura().equals(resultado.getString("Asignaturas_Id_Asignatura"))) {
                         String strSentenciaInsert = String.format("UPDATE calificaciones SET Parcial_1 = '%s',Parcial_2 = '%s',Parcial_3 = '%s', Ordinario = '%s',Extraordinario = '%s' WHERE Alumnos_Matricula_alumno = '%s' and Asignaturas_Id_Asignatura='%s'", datos.getParcial1(), datos.getParcial2(), datos.getParcial3(), datos.getOrdinario(), datos.getExtraordinario(), matricula, asignatura);
                         conexion.ejecutarSentenciaSQL(strSentenciaInsert);
                         this.limpiarTabla();
@@ -393,6 +401,40 @@ DefaultTableModel modelo;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void tbCalificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCalificacionMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 1) {
+            JTable receptor = (JTable) evt.getSource();
+
+            matriculaAlum = receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString();
+            txt_Matricula.setText(matriculaAlum);
+           
+            String idAsig= GetIdAsignatura(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
+            txt_IdAsignatura.setText(idAsig);
+            
+            txt_Parcial1.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            txt_Parcial2.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
+            txt_Parcial3.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6).toString());
+            txt_Ordinario.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 7).toString());
+            txt_Extraordinario.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 8).toString());
+    
+        }
+    }//GEN-LAST:event_tbCalificacionMouseClicked
+
+    String GetIdAsignatura(String nameAsig){
+        
+        String a = null;        
+        String sql = String.format("SELECT Id_Asignatura FROM asignaturas WHERE Nombre='%s'", nameAsig);       
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {           
+            while(rs.next()){
+                a = rs.getString("Id_Asignatura");
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+        return a;
+    }
     void limpiarTabla(){
         modelo = (DefaultTableModel) tbCalificacion.getModel();
         modelo.setRowCount(0);
