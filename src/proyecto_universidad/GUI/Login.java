@@ -13,18 +13,20 @@ public class Login extends javax.swing.JFrame {
 
     conexion conexion = new conexion();
     int categoria = 0;
-
+    public static String profe; //almacenar la matricula del profesor para ser un dato visible en cualquier clase
+    
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
     public prounivBL obtenerDatos() {
         prounivBL datos = new prounivBL();
-
+        
         String matricula = inputMatricula.getText().trim();
         String contraseña = inputContraseña.getText().trim();
 
+        profe = matricula; // asigno la matricula 
         datos.setMatricula(matricula);
         datos.setContraseña(contraseña);
 

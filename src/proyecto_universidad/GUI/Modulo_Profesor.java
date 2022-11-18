@@ -5,7 +5,11 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import proyecto_universidad.DAL.conexion;
+import static proyecto_universidad.GUI.Login.profe; //importo la variable estatica para obtener el dato
 
 /**
  *
@@ -13,12 +17,35 @@ import javax.swing.JOptionPane;
  */
 public class Modulo_Profesor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modulo_Profesor
-     */
+    DefaultTableModel modelo;
+    conexion conexion = new conexion();
+
     public Modulo_Profesor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostrarDatos();
+        
+    }
+
+
+    public void mostrarDatos() {
+        System.out.println("Valor: "+profe);
+        String sql = String.format("select Dia, Hora ,Aula,Nombre from horario_alumno,grupos, asignaturas where Grupos_Id_Grupo=Id_Grupo and Asignaturas_Id_Asignatura= Id_Asignatura and Profesores_Matricula_profesor= '%s'", profe);
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] horario = new Object[4];
+            modelo = (DefaultTableModel) Tabla.getModel();
+            while (rs.next()) {
+                horario[0] = rs.getString("Dia");
+                horario[1] = rs.getString("Hora");
+                horario[2] = rs.getString("Aula");
+                horario[3] = rs.getString("Nombre");
+                modelo.addRow(horario);
+            }
+
+            //Tabla.setModel(modelo);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -64,7 +91,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+                "Día", "Hora", "Aula", "Asignatura"
             }
         ));
         jScrollPane1.setViewportView(Tabla);
@@ -205,8 +232,10 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(HorarioLayout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(76, 76, 76)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -302,9 +331,9 @@ public class Modulo_Profesor extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // cerrar sesion
-        int res=JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
-        if(res == 0){
-            Login lg =new Login();
+        int res = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if (res == 0) {
+            Login lg = new Login();
             lg.setVisible(true);
             dispose();
         }

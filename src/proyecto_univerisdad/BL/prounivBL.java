@@ -11,7 +11,7 @@ package proyecto_univerisdad.BL;
  */
 public class prounivBL {
     String matricula, contraseña, id_asig, nombre_asig, creditos;
-    
+
     public String getId_asig() {
         return id_asig;
     }
