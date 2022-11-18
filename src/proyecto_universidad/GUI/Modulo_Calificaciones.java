@@ -8,7 +8,6 @@ package proyecto_universidad.GUI;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_univerisdad.BL.prounivBL;
 import proyecto_univerisdad.BL.prounivBL2;
 import proyecto_universidad.DAL.conexion;
 
@@ -370,7 +369,8 @@ DefaultTableModel modelo;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         if (txt_Matricula.getText().equals("")) {
+        String matricula, asignatura; 
+        if (txt_Matricula.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No puede dejar el campo vacío.");
         } else {
             ResultSet resultado = null;
@@ -378,10 +378,10 @@ DefaultTableModel modelo;
             try {
                 prounivBL2 datos = obtenerDatos();
                 while (resultado.next()) {
-                    if (datos.getMatricula().equals(resultado.getString("Alumnos_Matricula_alumno")) && datos.getAsignatura().equals(resultado.getString("Asignaturas_Id_Asignatura"))) {
-                        System.out.println("1");
-                        String strSentenciaInsert = String.format("INSERT INTO `calificaciones`(`Parcial_1`, `Parcial_2`, `Parcial_3`, `Ordinario`, `Extraordinario`)"
-                                + "VALUES ('%s', '%s', '%s', '%s', '%s')", datos.getParcial1(), datos.getParcial2(), datos.getParcial3(), datos.getOrdinario(), datos.getExtraordinario());
+                    if (datos.getMatricula().equals(resultado.getString("Alumnos_Matricula_alumno"))) {
+                        matricula=resultado.getString("Alumnos_Matricula_alumno");
+                        asignatura=resultado.getString("Asignaturas_Id_Asignatura");
+                        String strSentenciaInsert = String.format("UPDATE calificaciones SET Parcial_1 = '%s',Parcial_2 = '%s',Parcial_3 = '%s', Ordinario = '%s',Extraordinario = '%s' WHERE Alumnos_Matricula_alumno = '%s' and Asignaturas_Id_Asignatura='%s'", datos.getParcial1(), datos.getParcial2(), datos.getParcial3(), datos.getOrdinario(), datos.getExtraordinario(), matricula, asignatura);
                         conexion.ejecutarSentenciaSQL(strSentenciaInsert);
                         this.limpiarTabla();
                         this.mostrarDatos();//actualizamos la tabla
