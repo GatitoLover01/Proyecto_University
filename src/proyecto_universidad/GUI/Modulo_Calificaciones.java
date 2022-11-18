@@ -8,7 +8,6 @@ package proyecto_universidad.GUI;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_univerisdad.BL.prounivBL;
 import proyecto_univerisdad.BL.prounivBL2;
 import proyecto_universidad.DAL.conexion;
 
