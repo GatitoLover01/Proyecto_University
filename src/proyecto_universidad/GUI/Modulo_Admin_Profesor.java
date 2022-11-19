@@ -26,8 +26,8 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         mostrarDatos();
-        cbx_gen(cbx_genero);
-        cbx_cat(cbx_categoria);
+        cbx_gen();
+        cbx_cat();
     }
 
     /**
@@ -474,15 +474,15 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         String apat = txt_Apat.getText();
         String amat = txt_Amat.getText();
         String pass = txt_pass.getText();
-        String genero = cbx_genero.getSelectedItem().toString();
-        String categoria = cbx_categoria.getSelectedItem().toString();
+        int genero = cbx_genero.getSelectedIndex();
+        int categoria = cbx_categoria.getSelectedIndex();
 
         try {
 
-            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero.equals("") || categoria.equals("")) {
+            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") ||  genero==0 || categoria==0) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
-                String sql = String.format("UPDATE `profesores` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s' ,`Contrasena` = '%s',`Id_genero` = '%s',`Id_categoria` = '%s' WHERE Matricula_profesor = '%s'",nombre, apat, amat, pass, genero, categoria, matricula);
+                String sql = String.format("UPDATE `profesores` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s' ,`Contrasena` = '%s',`Id_genero` = '%d',`Id_categoria` = '%d' WHERE Matricula_profesor = '%s'",nombre, apat, amat, pass, genero, categoria, matricula);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 this.limpiarTabla();
@@ -505,9 +505,11 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
             txt_Apat.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
             txt_Amat.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
             txt_pass.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
-            cbx_genero.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5));
-            cbx_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6));
-
+            int id_genero= Integer.parseInt(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
+            int id_categoria= Integer.parseInt(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6).toString());
+            
+            cbx_genero.setSelectedIndex(id_genero);
+            cbx_categoria.setSelectedIndex(id_categoria);
         }
     }//GEN-LAST:event_TablaMouseClicked
 
@@ -532,16 +534,16 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         String apat = txt_Apat.getText();
         String amat = txt_Amat.getText();
         String pass = txt_pass.getText();
-        String genero = cbx_genero.getSelectedItem().toString();
-        String categoria = cbx_categoria.getSelectedItem().toString();
+        int genero = cbx_genero.getSelectedIndex();
+        int categoria = cbx_categoria.getSelectedIndex();
 
         try {
 
-            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero.equals("") || categoria.equals("")) {
+            if (matricula.equals("") || nombre.equals("") || apat.equals("") || amat.equals("") || pass.equals("") || genero==0 || categoria==0) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
                 String sql = String.format("INSERT INTO `profesores`(`Matricula_profesor`,`Nombre`,`Apellido_paterno`,`Apellido_materno`,`Contrasena`,`Id_genero`,`Id_categoria`) "
-                        + "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", matricula, nombre, apat, amat, pass, genero, categoria);
+                        + "VALUES ('%s', '%s', '%s', '%s', '%s', '%d', '%d')", matricula, nombre, apat, amat, pass, genero, categoria);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos agregados correctamente");
                 this.limpiarTabla();
@@ -611,30 +613,30 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
     }
 
     //METODO PARA CARGAR ITEMS DEL COMBO BOX DE GENERO
-    void cbx_gen(JComboBox cbx) {
-        String sql = "Select Id_genero from genero";
-        cbx.addItem("Seleccione una opción");
+    void cbx_gen() {
+        String sql = "Select Nombre from genero";
+        cbx_genero.addItem("Seleccione una opción");
         try {
             ResultSet rs = conexion.consultarRegistros(sql);
             
             while (rs.next()) {
 
-                cbx.addItem(rs.getInt("Id_genero"));
+                cbx_genero.addItem(rs.getString("Nombre"));
 
             }
         } catch (SQLException e) {
         }
     }
 
-    void cbx_cat(JComboBox cbx) {
-        String sql = "Select Id_Categoria from categoria where Id_Categoria=1 or Id_Categoria=2";
-        cbx.addItem("Seleccione una opción");
+    void cbx_cat() {
+        String sql = "Select Nombre from categoria where Id_Categoria=1 or Id_Categoria=2";
+        cbx_categoria.addItem("Seleccione una opción");
         try {
             ResultSet rs = conexion.consultarRegistros(sql);
             
             while (rs.next()) {
 
-                cbx.addItem(rs.getInt("Id_Categoria"));
+                cbx_categoria.addItem(rs.getString("Nombre"));
 
             }
         } catch (SQLException e) {

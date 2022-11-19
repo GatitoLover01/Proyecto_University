@@ -26,7 +26,7 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         mostrarDatos();
-        cbx_asig(cbx_asignatura);
+        cbx_asig();
     }
 
     /**
@@ -302,7 +302,13 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         jLabel5.setText("Administración de grupos.");
 
         btn_regresar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         btn_regresar.setText("Regresar");
+        btn_regresar.setContentAreaFilled(false);
+        btn_regresar.setFocusPainted(false);
+        btn_regresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_regresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_regresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_regresarActionPerformed(evt);
@@ -318,12 +324,13 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
-                    .addComponent(btn_regresar)
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Botones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))))
+                        .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_regresar)
+                            .addGroup(ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Botones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -338,13 +345,12 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                         .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ContenidoLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(11, 11, 11))
+                        .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout PrincipalLayout = new javax.swing.GroupLayout(Principal);
@@ -397,14 +403,14 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         String id_grupo = txt_idgrupo.getText();
         String aula = txt_aula.getText();
         String capacidad = txt_capacidad.getText();
-        String asignatura = cbx_asignatura.getSelectedItem().toString();
+        int asignatura = obtenerid_asig(cbx_asignatura.getSelectedItem().toString());
 
         try {
 
-            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura.equals("")) {
+            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura==0) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
-                String sql = String.format("UPDATE `grupos` SET `Aula` = '%s',`Capacidad` = '%s',`Asignaturas_Id_Asignatura` = '%s' WHERE Id_Grupo = '%s'", aula, capacidad, asignatura, id_grupo);
+                String sql = String.format("UPDATE `grupos` SET `Aula` = '%s',`Capacidad` = '%s',`Asignaturas_Id_Asignatura` = '%d' WHERE Id_Grupo = '%s'", aula, capacidad, asignatura, id_grupo);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 this.limpiarTabla();
@@ -419,7 +425,6 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
 
     private void Tb_grupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_grupoMouseClicked
         //evento al darle clic a una fila de la tabla
-        //int fila=Tb_grupo.getSelectedRow();
         if (evt.getClickCount() == -1) {
             JOptionPane.showMessageDialog(this, "No se seleccionó fila");
 
@@ -428,11 +433,28 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
             txt_idgrupo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
             txt_aula.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
             txt_capacidad.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
-            cbx_asignatura.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3));
-
+            String id_asig= Nom_asignatura(Integer.parseInt(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString()));
+            cbx_asignatura.setSelectedItem(id_asig);
+        
         }
+        
     }//GEN-LAST:event_Tb_grupoMouseClicked
 
+     String Nom_asignatura(int id_asig){
+        
+        String a = null;        
+        String sql = String.format("Select Nombre from asignaturas where Id_Asignatura = '%s' ", id_asig);       
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {           
+            while(rs.next()){
+                a = rs.getString("Nombre");
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+        return a;
+    }
+    
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // regresar a administrador
         int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de administración de 'Grupos'?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
@@ -449,15 +471,15 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         String id_grupo = txt_idgrupo.getText();
         String aula = txt_aula.getText();
         String capacidad = txt_capacidad.getText();
-        String asignatura = cbx_asignatura.getSelectedItem().toString();
+        int asignatura = obtenerid_asig(cbx_asignatura.getSelectedItem().toString());
 
         try {
 
-            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura.equals("")) {
+            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") || asignatura==0) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
                 String sql=String.format("INSERT INTO `grupos`(`Id_Grupo`,`Aula`,`Capacidad`,`Asignaturas_Id_Asignatura`) "
-                                + "VALUES ('%s', '%s', '%s', '%s')", id_grupo, aula, capacidad,asignatura);
+                                + "VALUES ('%s', '%s', '%s', '%d')", id_grupo, aula, capacidad,asignatura);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos agregados correctamente");
                 this.limpiarTabla();
@@ -490,6 +512,19 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
+    int obtenerid_asig(String asig){
+        int a=0;        
+        String sql = String.format("Select Id_Asignatura from asignaturas where Nombre = '%s' ", asig);       
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {           
+            while(rs.next()){
+                a = rs.getInt("Id_Asignatura");
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+        return a;
+    }
     //METODOS
     void LimpiarGUI() {
         txt_idgrupo.setText("");
@@ -515,21 +550,21 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                 grupos[3] = rs.getInt("Asignaturas_Id_Asignatura");
                 modelo.addRow(grupos);
             }
-            //Tb_grupo.setModel(modelo);
+            Tb_grupo.setModel(modelo);
         } catch (Exception e) {
         }
     }
 
     //METODO PARA MOSTRAR ITEMS DEL COMBO BOX DE ASIGNATURAS
-    void cbx_asig(JComboBox cbx) {
-        String sql = "Select distinct Id_Asignatura from asignaturas";
+    void cbx_asig() {
+        String sql = "Select Nombre from asignaturas";
 
         try {
             ResultSet rs = conexion.consultarRegistros(sql);
-            cbx.addItem("Seleccione una opción");
+            cbx_asignatura.addItem("Seleccione una opción");
             while (rs.next()) {
 
-                cbx.addItem(rs.getInt("Id_Asignatura"));
+                cbx_asignatura.addItem(rs.getString("Nombre"));
 
             }
         } catch (SQLException e) {
