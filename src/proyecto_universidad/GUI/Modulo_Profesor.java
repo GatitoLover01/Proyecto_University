@@ -67,6 +67,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Botones = new javax.swing.JPanel();
         cbx_grupos = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -108,21 +109,34 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
+        jButton1.setText("Agregar calificación");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
         BotonesLayout.setHorizontalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbx_grupos, 0, 166, Short.MAX_VALUE)
+                .addComponent(cbx_grupos, 0, 180, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(BotonesLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BotonesLayout.setVerticalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(cbx_grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         jLabel15.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -303,6 +317,13 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Modulo_Calificaciones modCal = new Modulo_Calificaciones();
+        modCal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     void cbx_grupos() {
         String sql =  String.format("Select Grupos_Id_Grupo from horario_alumno where Profesores_Matricula_profesor = '%s'",profe);
@@ -361,6 +382,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel Principal;
     private javax.swing.JTable Tabla;
     private javax.swing.JComboBox<String> cbx_grupos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

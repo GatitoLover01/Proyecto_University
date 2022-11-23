@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import proyecto_univerisdad.BL.prounivBL2;
 import proyecto_universidad.DAL.conexion;
+import static proyecto_universidad.GUI.Login.profe;
 
 /**
  *
@@ -67,6 +68,7 @@ DefaultTableModel modelo;
         cboGrupos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbCalificacion = new javax.swing.JTable();
+        txt_saludo_profesor = new javax.swing.JLabel();
         Encabezado3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -265,6 +267,8 @@ DefaultTableModel modelo;
         });
         jScrollPane1.setViewportView(tbCalificacion);
 
+        txt_saludo_profesor.setText("Bienvenido profesor ");
+
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
         Horario.setLayout(HorarioLayout);
         HorarioLayout.setHorizontalGroup(
@@ -272,20 +276,27 @@ DefaultTableModel modelo;
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HorarioLayout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(HorarioLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(txt_saludo_profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         HorarioLayout.setVerticalGroup(
             HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HorarioLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addComponent(txt_saludo_profesor)
+                .addGap(27, 27, 27)
                 .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,6 +536,25 @@ DefaultTableModel modelo;
             //tbGrado.setModel(modelo);
         } catch (Exception e) {
         }
+        
+        String idP=profe;
+        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno FROM profesores WHERE Matricula_profesor='%s'", idP) ;
+        String saludo="";
+        ResultSet rs2 = conexion.consultarRegistros(sql2);
+        try {
+            System.out.println("1");
+            Object[] name = new Object[3];
+            while (rs2.next()) {
+                name[0]=rs2.getString("Nombre");
+                name[1]=rs2.getString("Apellido_paterno");
+                name[2]=rs2.getString("Apellido_materno");
+                saludo="Bienvenido Profesor "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                txt_saludo_profesor.setText(saludo);
+                System.out.println(saludo);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
     }
     /**
      * @param args the command line arguments
@@ -606,5 +636,6 @@ DefaultTableModel modelo;
     private javax.swing.JTextField txt_Parcial1;
     private javax.swing.JTextField txt_Parcial2;
     private javax.swing.JTextField txt_Parcial3;
+    private javax.swing.JLabel txt_saludo_profesor;
     // End of variables declaration//GEN-END:variables
 }
