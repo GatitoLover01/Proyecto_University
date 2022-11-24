@@ -516,7 +516,8 @@ DefaultTableModel modelo;
         }
     }
      void mostrarDatos() {
-        String sql = "SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera";
+         String idProf=profe;
+        String sql = String.format("SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and Profesores_Matricula_Profesor='%s'",idProf);
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
             Object[] horario = new Object[9];
@@ -537,20 +538,25 @@ DefaultTableModel modelo;
         } catch (Exception e) {
         }
         
-        String idP=profe;
-        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno FROM profesores WHERE Matricula_profesor='%s'", idP) ;
+        /*Codigo para el saludo del profesor*/
+        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno, Id_genero FROM profesores WHERE Matricula_profesor='%s'", idProf) ;
         String saludo="";
         ResultSet rs2 = conexion.consultarRegistros(sql2);
         try {
             System.out.println("1");
-            Object[] name = new Object[3];
+            Object[] name = new Object[4];
             while (rs2.next()) {
                 name[0]=rs2.getString("Nombre");
                 name[1]=rs2.getString("Apellido_paterno");
                 name[2]=rs2.getString("Apellido_materno");
-                saludo="Bienvenido Profesor "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                name[3]=rs2.getInt("Id_genero");
+                
+                if(Integer.parseInt(name[3].toString())==1){
+                    saludo="Bienvenido Profesor "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                }else{
+                    saludo="Bienvenida Profesora "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                }
                 txt_saludo_profesor.setText(saludo);
-                System.out.println(saludo);
             }
             //tbGrado.setModel(modelo);
         } catch (Exception e) {
