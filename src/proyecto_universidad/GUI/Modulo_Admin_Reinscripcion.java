@@ -23,6 +23,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
     
     public Modulo_Admin_Reinscripcion() {
         initComponents();
+        mostrarDatos();
     }
 
     /**
@@ -114,7 +115,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Matricula Alumno", "Nombre alumno", "Asignatura", "Grupo"
+                "Matricula Alumno", "Nombre alumno"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -372,7 +373,24 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btn_regresarActionPerformed
-
+    
+    void mostrarDatos() {
+        String sql = "SELECT Alumnos_Matricula_alumno, alumnos.Nombre "
+                + "FROM `pre_horarios`,`alumnos` "
+                + "where alumnos.Matricula_alumno= pre_horarios.Alumnos_Matricula_alumno";
+        ResultSet rs = conexion.consultarRegistros(sql);
+        try {
+            Object[] preReinscripcion = new Object[2];
+            modelo = (DefaultTableModel) Tabla.getModel();
+            while (rs.next()) {
+                preReinscripcion[0] = rs.getString("Alumnos_Matricula_alumno");
+                preReinscripcion[1] = rs.getString("Nombre");
+                modelo.addRow(preReinscripcion);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }
     
     /**
      * @param args the command line arguments
