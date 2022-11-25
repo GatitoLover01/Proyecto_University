@@ -47,6 +47,30 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             //Tabla.setModel(modelo);
         } catch (Exception e) {
         }
+        
+        /*Codigo para el saludo del profesor*/
+        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno, Id_genero FROM profesores WHERE Matricula_profesor='%s'", profe) ;
+        String saludo="";
+        ResultSet rs2 = conexion.consultarRegistros(sql2);
+        try {
+            System.out.println("1");
+            Object[] name = new Object[4];
+            while (rs2.next()) {
+                name[0]=rs2.getString("Nombre");
+                name[1]=rs2.getString("Apellido_paterno");
+                name[2]=rs2.getString("Apellido_materno");
+                name[3]=rs2.getInt("Id_genero");
+                
+                if(Integer.parseInt(name[3].toString())==1){
+                    saludo="Bienvenido Profesor "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                }else{
+                    saludo="Bienvenida Profesora "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                }
+                txt_bienvenida.setText(saludo);
+            }
+            //tbGrado.setModel(modelo);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -60,7 +84,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
 
         Principal = new javax.swing.JPanel();
         Horario = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        txt_bienvenida = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         Calificaciones = new javax.swing.JPanel();
@@ -82,8 +106,8 @@ public class Modulo_Profesor extends javax.swing.JFrame {
 
         Horario.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel14.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
-        jLabel14.setText("¡Bienvenido Profesor!");
+        txt_bienvenida.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
+        txt_bienvenida.setText("¡Bienvenido Profesor!");
 
         Tabla.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -208,13 +232,13 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(224, 224, 224)
-                        .addComponent(jLabel14))
+                        .addComponent(txt_bienvenida))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HorarioLayout.setVerticalGroup(
@@ -226,7 +250,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                         .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel14)
+                        .addComponent(txt_bienvenida)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -384,7 +408,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbx_grupos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -393,5 +416,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txt_bienvenida;
     // End of variables declaration//GEN-END:variables
 }
