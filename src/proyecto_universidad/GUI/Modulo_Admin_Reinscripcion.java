@@ -53,7 +53,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txt_asignatura = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btn_actualizar = new javax.swing.JButton();
+        btn_aceptar = new javax.swing.JButton();
         txt_grupo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btn_regresar = new javax.swing.JButton();
@@ -180,17 +180,17 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jLabel9.setText("Grupo:");
 
-        btn_actualizar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        btn_actualizar.setText("Aceptar");
-        btn_actualizar.setContentAreaFilled(false);
-        btn_actualizar.setFocusPainted(false);
-        btn_actualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_actualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        btn_actualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+        btn_aceptar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btn_aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btn_aceptar.setText("Aceptar");
+        btn_aceptar.setContentAreaFilled(false);
+        btn_aceptar.setFocusPainted(false);
+        btn_aceptar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_aceptar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btn_aceptar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_actualizarActionPerformed(evt);
+                btn_aceptarActionPerformed(evt);
             }
         });
 
@@ -204,7 +204,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosLayout.createSequentialGroup()
-                        .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosLayout.createSequentialGroup()
                         .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -239,7 +239,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_actualizar)
+                .addComponent(btn_aceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -358,28 +358,10 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_asignaturaActionPerformed
 
-    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        // Boton de actualizar
-        String id_grupo = txt_matricula.getText();
-        String aula = txt_nombreA.getText();
-        String capacidad = txt_asignatura.getText();
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        // Boton de aceptar
        
-
-        try {
-
-            if (id_grupo.equals("") || aula.equals("") || capacidad.equals("") ) {
-                JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
-            } else {
-                String sql = String.format("UPDATE `grupos` SET `Aula` = '%s',`Capacidad` = '%s',`Asignaturas_Id_Asignatura` = '%d' WHERE Id_Grupo = '%s'", aula, capacidad, id_grupo);
-                conexion.ejecutarSentenciaSQL(sql);
-                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
-                this.mostrarDatos();//actualizamos la tabla
-
-            }
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btn_actualizarActionPerformed
+    }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // regresar a administrador
@@ -391,25 +373,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_regresarActionPerformed
 
-    public void mostrarDatos() {
-        System.out.println("Valor: "+profe);
-        String sql = String.format("select Dia, Hora ,Aula,Nombre from horario_alumno,grupos, asignaturas where Grupos_Id_Grupo=Id_Grupo and Asignaturas_Id_Asignatura= Id_Asignatura and Profesores_Matricula_profesor= '%s'", profe);
-        ResultSet rs = conexion.consultarRegistros(sql);
-        try {
-            Object[] horario = new Object[4];
-            modelo = (DefaultTableModel) Tabla.getModel();
-            while (rs.next()) {
-                horario[0] = rs.getString("Dia");
-                horario[1] = rs.getString("Hora");
-                horario[2] = rs.getString("Aula");
-                horario[3] = rs.getString("Nombre");
-                modelo.addRow(horario);
-            }
-
-            //Tabla.setModel(modelo);
-        } catch (Exception e) {
-        }
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -451,7 +415,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
     private javax.swing.JPanel Encabezado;
     private javax.swing.JPanel Principal;
     private javax.swing.JTable Tabla;
-    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_regresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
