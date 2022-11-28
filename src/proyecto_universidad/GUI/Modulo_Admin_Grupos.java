@@ -41,7 +41,6 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         Principal = new javax.swing.JPanel();
         Encabezado = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Contenido = new javax.swing.JPanel();
@@ -71,7 +70,7 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
         Encabezado.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
-        jLabel2.setText("UNIVERSIDAD FRANCISCO");
+        jLabel2.setText("UNIVERSIDAD DEL MONTE");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/barra.png"))); // NOI18N
 
@@ -86,15 +85,10 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                     .addGroup(EncabezadoLayout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(EncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EncabezadoLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(EncabezadoLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel2))))
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2))
                     .addComponent(jLabel6))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 212, Short.MAX_VALUE))
         );
         EncabezadoLayout.setVerticalGroup(
             EncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,11 +100,8 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                     .addGroup(EncabezadoLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel6))
         );
 
         Contenido.setBackground(new java.awt.Color(204, 204, 255));
@@ -124,12 +115,19 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
                 "Id grupo", "Aula", "Capacidad", "Asignatura"
             }
         ));
+        Tb_grupo.getTableHeader().setReorderingAllowed(false);
         Tb_grupo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Tb_grupoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(Tb_grupo);
+        if (Tb_grupo.getColumnModel().getColumnCount() > 0) {
+            Tb_grupo.getColumnModel().getColumn(0).setResizable(false);
+            Tb_grupo.getColumnModel().getColumn(1).setResizable(false);
+            Tb_grupo.getColumnModel().getColumn(2).setResizable(false);
+            Tb_grupo.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -364,7 +362,7 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
             PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PrincipalLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(Encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
@@ -620,7 +618,6 @@ public class Modulo_Admin_Grupos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbx_asignatura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

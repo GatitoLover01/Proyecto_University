@@ -23,6 +23,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
     
     public Modulo_Admin_Reinscripcion() {
         initComponents();
+        setLocationRelativeTo(null);
         mostrarDatos();
     }
 
@@ -51,11 +52,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
         txt_matricula = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_nombreA = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txt_asignatura = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         btn_aceptar = new javax.swing.JButton();
-        txt_grupo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btn_regresar = new javax.swing.JButton();
 
@@ -174,18 +171,6 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jLabel7.setText("Asignatura");
-
-        txt_asignatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_asignaturaActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jLabel9.setText("Grupo:");
-
         btn_aceptar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         btn_aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         btn_aceptar.setText("Aceptar");
@@ -211,24 +196,20 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
                 .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosLayout.createSequentialGroup()
                         .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
+                        .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosLayout.createSequentialGroup()
                         .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9)
-                            .addComponent(txt_asignatura, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(jLabel7)
                             .addComponent(txt_nombreA)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
-                            .addComponent(txt_matricula)
-                            .addComponent(txt_grupo))
-                        .addGap(44, 44, 44))))
+                            .addComponent(txt_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))))
         );
         DatosLayout.setVerticalGroup(
             DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
                 .addComponent(txt_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,17 +217,9 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_nombreA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(btn_aceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(84, 84, 84)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -345,7 +318,7 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
             JTable receptor = (JTable) evt.getSource();
             txt_matricula.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
             txt_nombreA.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
-            txt_asignatura.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            
         }
 
     }//GEN-LAST:event_TablaMouseClicked
@@ -357,10 +330,6 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
     private void txt_nombreAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreAActionPerformed
-
-    private void txt_asignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_asignaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_asignaturaActionPerformed
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         // Boton de aceptar
@@ -444,14 +413,10 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txt_asignatura;
-    private javax.swing.JTextField txt_grupo;
     private javax.swing.JTextField txt_matricula;
     private javax.swing.JTextField txt_nombreA;
     // End of variables declaration//GEN-END:variables

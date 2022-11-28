@@ -78,7 +78,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         Encabezado.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
-        jLabel2.setText("UNIVERSIDAD FRANCISCO");
+        jLabel2.setText("UNIVERSIDAD DEL MONTE");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/barra.png"))); // NOI18N
 
@@ -131,6 +131,7 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
                 "Matrícula", "Nombre", "Apellido paterno", "Apellido materno", "Contraseña", "Género", "Categoría"
             }
         ));
+        Tabla.getTableHeader().setReorderingAllowed(false);
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMouseClicked(evt);
@@ -138,9 +139,16 @@ public class Modulo_Admin_Profesor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
         if (Tabla.getColumnModel().getColumnCount() > 0) {
+            Tabla.getColumnModel().getColumn(0).setResizable(false);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(1).setResizable(false);
             Tabla.getColumnModel().getColumn(1).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(2).setResizable(false);
+            Tabla.getColumnModel().getColumn(3).setResizable(false);
+            Tabla.getColumnModel().getColumn(4).setResizable(false);
+            Tabla.getColumnModel().getColumn(5).setResizable(false);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(40);
+            Tabla.getColumnModel().getColumn(6).setResizable(false);
             Tabla.getColumnModel().getColumn(6).setPreferredWidth(35);
         }
 
