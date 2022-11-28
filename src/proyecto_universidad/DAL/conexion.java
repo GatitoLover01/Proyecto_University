@@ -9,6 +9,10 @@ import java.sql.ResultSet;
  * @author erick
  */
 public class conexion {
+    //genero en alumnos no se guarda al actualizar
+    //boton horarios no dirige a nada
+    //boton documentos no dirige a nada
+    
     
     /*Conexión con DBFREE
     String strConexionDB = "jdbc:mysql://db4free.net:3306/universidad_proy";
