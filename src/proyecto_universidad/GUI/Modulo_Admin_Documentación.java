@@ -47,9 +47,6 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,11 +61,11 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CRUP", "Acta de nacimiento", "Certificado de preparatoria", "Ficha de pago"
+                "Nombre", "CURP", "Acta de nacimiento", "Certificado de preparatoria", "Cita"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -118,36 +115,6 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Regresar");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton1)
-                .addGap(41, 41, 41)
-                .addComponent(jButton2)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
         Horario.setLayout(HorarioLayout);
         HorarioLayout.setHorizontalGroup(
@@ -169,12 +136,10 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addGroup(HorarioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HorarioLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton4))))
+                        .addComponent(jButton4))
+                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         HorarioLayout.setVerticalGroup(
@@ -184,13 +149,8 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
                 .addComponent(Encabezado3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HorarioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
@@ -221,24 +181,23 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Modulo_Administrador mdAdm = new Modulo_Administrador();
+        mdAdm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     void mostrarDatos() {
-        String sql = "SELECT * FROM documentosalumnos";
+        String sql = "SELECT Nombre, CurpString, Acta_nacimiento, Certificado_preparatorio, Cita FROM documentosalumnos, alumnos WHERE Alumnos_Matricula_alumno=alumnos.Matricula_alumno";
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
-            Object[] document = new Object[4];
+            Object[] document = new Object[5];
             modelo = (DefaultTableModel) tbDocumentos.getModel();
             while (rs.next()) {
-                document[0] = rs.getString("CurpString");
-                document[1] = rs.getBlob("Acta_nacimiento");
-                document[2] = rs.getBlob("Certificado_preparatorio");
-                document[3] = rs.getString("Cita");
+                document[0] = rs.getString("Nombre");
+                document[1] = rs.getString("CurpString");
+                document[2] = rs.getBlob("Acta_nacimiento");
+                document[3] = rs.getBlob("Certificado_preparatorio");
+                document[4] = rs.getBlob("Cita");
                 modelo.addRow(document);
             }
             //tbGrado.setModel(modelo);
@@ -283,8 +242,6 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Encabezado3;
     private javax.swing.JPanel Horario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
@@ -294,7 +251,6 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbDocumentos;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,7 @@
  */
 package proyecto_universidad.GUI;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -152,11 +153,11 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido paterno", "Apellido materno", "CURP", "Certificado de prepa", "Acta de nacimiento"
+                "Nombre", "Apellido paterno", "Apellido materno", "CURP", "Certificado de prepa", "Cita", "Curp", "Acta de nacimiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -255,6 +256,7 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ApellidoPActionPerformed
 
     private void tbAspirantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAspirantesMouseClicked
+        prounivBL2 datos = new prounivBL2();
         if (evt.getClickCount() == 1) {
             JTable receptor = (JTable) evt.getSource();
 
@@ -262,6 +264,15 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             txt_ApellidoP.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
             txt_ApellidoM.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
             txt_Curp.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            datos.setCertificado((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 4));
+            System.out.println(datos.getCertificado());
+            datos.setCita((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 5));
+            System.out.println(datos.getCita());
+            datos.setCurpD((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 6));
+            System.out.println(datos.getCurpD());
+            datos.setActaN((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 7));
+            System.out.println(datos.getActaN());
+            
             
         }
     }//GEN-LAST:event_tbAspirantesMouseClicked
@@ -298,8 +309,11 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             String strSentenciaInsert = String.format("INSERT INTO `alumnos`(`Matricula_alumno`, `Nombre`, `Apellido_paterno`, `Apellido_materno`, `Semestre`, `Ano_ingreso`, `Avance_curricular`, `Contrasena`, `Carreras_Id_Carrera`, `Id_genero`, `Id_categoria`) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",matricula, datos.getNombre(), datos.getApellidoP(), datos.getApellidoM(), semestre, year_ingreso, avance, password, idCarrea, idGenero, 3);
             conexion.ejecutarSentenciaSQL(strSentenciaInsert);
             
-            String strSentenciaDelete = String.format("DELETE FROM `inscripciones` WHERE `Id_Inscripcion` = '%s'",datos.getIdInscripcion());
-            conexion.ejecutarSentenciaSQL(strSentenciaDelete);
+            String strSetenciaInsert2 = String.format("INSERT INTO `documentosalumnos`(`Certificado_preparatorio`, `Cita`, `Curp`, `Acta_nacimiento`, `Alumnos_Matricula_alumno`, `CurpString`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",datos.getCertificado(),datos.getCita(), datos.getCurpD(), datos.getActaN(), matricula , datos.getCurp() );
+            conexion.ejecutarSentenciaSQL(strSetenciaInsert2);
+                    
+            //String strSentenciaDelete = String.format("DELETE FROM `inscripciones` WHERE `Id_Inscripcion` = '%s'",datos.getIdInscripcion());
+            //conexion.ejecutarSentenciaSQL(strSentenciaDelete);
            
             this.limpiarTabla();
             this.mostrarDatos();
@@ -381,7 +395,7 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
         String sql = "SELECT * FROM `inscripciones`";
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
-            Object[] aspirantes = new Object[6];
+            Object[] aspirantes = new Object[8];
             modelo = (DefaultTableModel) tbAspirantes.getModel();
             while (rs.next()) {
                 aspirantes[0] = rs.getString("Nombre");
@@ -389,7 +403,9 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
                 aspirantes[2] = rs.getString("Apellido_materno");
                 aspirantes[3] = rs.getString("CurpString");
                 aspirantes[4] = rs.getBlob("Certificado_preparatoria");
-                aspirantes[5] = rs.getBlob("Acta_nacimiento");
+                aspirantes[5] = rs.getBlob("Cita");
+                aspirantes[6] = rs.getBlob("Curp");
+                aspirantes[7] = rs.getBlob("Acta_nacimiento");
                 
                 
                 modelo.addRow(aspirantes);
@@ -401,12 +417,13 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
 
     public prounivBL2 obtenerDatos() {
         prounivBL2 datos = new prounivBL2();
-
-        
+  
         String nombre = txt_Nombre.getText().trim();
         String apellidoP = txt_ApellidoP.getText().trim();
         String apellidoM = txt_ApellidoM.getText().trim();
         String curp = txt_Curp.getText().trim();
+        
+        
 
         int id = getIdInscripcion(nombre,curp);
         datos.setNombre(nombre);
