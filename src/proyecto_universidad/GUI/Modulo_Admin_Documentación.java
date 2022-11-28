@@ -72,7 +72,15 @@ public class Modulo_Admin_Documentación extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbDocumentos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbDocumentos);
+        if (tbDocumentos.getColumnModel().getColumnCount() > 0) {
+            tbDocumentos.getColumnModel().getColumn(0).setResizable(false);
+            tbDocumentos.getColumnModel().getColumn(1).setResizable(false);
+            tbDocumentos.getColumnModel().getColumn(2).setResizable(false);
+            tbDocumentos.getColumnModel().getColumn(3).setResizable(false);
+            tbDocumentos.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         Encabezado3.setBackground(new java.awt.Color(204, 204, 204));
 

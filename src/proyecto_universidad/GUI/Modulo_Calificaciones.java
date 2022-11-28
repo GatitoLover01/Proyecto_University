@@ -18,21 +18,23 @@ import static proyecto_universidad.GUI.Login.profe;
  * @author Adry
  */
 public class Modulo_Calificaciones extends javax.swing.JFrame {
-DefaultTableModel modelo;
+
+    DefaultTableModel modelo;
     conexion conexion = new conexion();
     String matriculaAlum;
+
     /**
      * Creates new form Modulo_Calificaciones
      */
     public Modulo_Calificaciones() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         /*Añadir valores al combo box*/
         mostrarDatosCBOBOX();
-        
+
         mostrarDatos();
-        
+
     }
 
     /**
@@ -231,6 +233,11 @@ DefaultTableModel modelo;
 
         jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         cboGrupos.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         cboGrupos.addItemListener(new java.awt.event.ItemListener() {
@@ -260,13 +267,26 @@ DefaultTableModel modelo;
                 return types [columnIndex];
             }
         });
+        tbCalificacion.getTableHeader().setReorderingAllowed(false);
         tbCalificacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCalificacionMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbCalificacion);
+        if (tbCalificacion.getColumnModel().getColumnCount() > 0) {
+            tbCalificacion.getColumnModel().getColumn(0).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(1).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(2).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(3).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(4).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(5).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(6).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(7).setResizable(false);
+            tbCalificacion.getColumnModel().getColumn(8).setResizable(false);
+        }
 
+        txt_saludo_profesor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txt_saludo_profesor.setText("Bienvenido profesor ");
 
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
@@ -276,42 +296,43 @@ DefaultTableModel modelo;
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HorarioLayout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(HorarioLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HorarioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txt_saludo_profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(HorarioLayout.createSequentialGroup()
+                                .addComponent(txt_saludo_profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         HorarioLayout.setVerticalGroup(
             HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HorarioLayout.createSequentialGroup()
-                .addComponent(txt_saludo_profesor)
-                .addGap(27, 27, 27)
-                .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(HorarioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_saludo_profesor)
+                            .addComponent(cboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         Encabezado3.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
-        jLabel16.setText("UNIVERSIDAD FRANCISCO");
+        jLabel16.setText("UNIVERSIDAD DEL MONTE");
 
         javax.swing.GroupLayout Encabezado3Layout = new javax.swing.GroupLayout(Encabezado3);
         Encabezado3.setLayout(Encabezado3Layout);
@@ -322,11 +343,11 @@ DefaultTableModel modelo;
                     .addGroup(Encabezado3Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel16))
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addGap(0, 220, Short.MAX_VALUE))
+                .addGap(0, 379, Short.MAX_VALUE))
         );
         Encabezado3Layout.setVerticalGroup(
             Encabezado3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +359,7 @@ DefaultTableModel modelo;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Encabezado3Layout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(35, 35, 35)))
+                        .addGap(37, 37, 37)))
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18))
@@ -368,14 +389,14 @@ DefaultTableModel modelo;
 
     private void cboGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGruposActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cboGruposActionPerformed
 
     private void cboGruposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboGruposItemStateChanged
         // TODO add your handling code here:
-        String asignatura = (String)cboGrupos.getSelectedItem();
+        String asignatura = (String) cboGrupos.getSelectedItem();
         System.out.println(asignatura);
-        
+
         this.limpiarTabla();
         filtrar(asignatura);
 
@@ -387,25 +408,25 @@ DefaultTableModel modelo;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String matricula, asignatura; 
+        String matricula, asignatura;
         if (txt_Matricula.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No puede dejar el campo vacío.");
         } else {
             ResultSet resultado = null;
             resultado = conexion.consultarRegistros("SELECT Alumnos_Matricula_alumno, Asignaturas_Id_Asignatura FROM calificaciones");
-            
+
             try {
                 prounivBL2 datos = obtenerDatos();
                 while (resultado.next()) {
-                    matricula=resultado.getString("Alumnos_Matricula_alumno");
-                    asignatura=resultado.getString("Asignaturas_Id_Asignatura");
+                    matricula = resultado.getString("Alumnos_Matricula_alumno");
+                    asignatura = resultado.getString("Asignaturas_Id_Asignatura");
                     if (datos.getMatricula().equals(resultado.getString("Alumnos_Matricula_alumno")) && datos.getAsignatura().equals(resultado.getString("Asignaturas_Id_Asignatura"))) {
                         String strSentenciaInsert = String.format("UPDATE calificaciones SET Parcial_1 = '%s',Parcial_2 = '%s',Parcial_3 = '%s', Ordinario = '%s',Extraordinario = '%s' WHERE Alumnos_Matricula_alumno = '%s' and Asignaturas_Id_Asignatura='%s'", datos.getParcial1(), datos.getParcial2(), datos.getParcial3(), datos.getOrdinario(), datos.getExtraordinario(), matricula, asignatura);
                         conexion.ejecutarSentenciaSQL(strSentenciaInsert);
                         this.limpiarTabla();
                         this.mostrarDatos();//actualizamos la tabla
                         this.LimpiarGUI();
-                    } 
+                    }
                 }
             } catch (Exception e) {
             }
@@ -419,26 +440,35 @@ DefaultTableModel modelo;
 
             matriculaAlum = receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString();
             txt_Matricula.setText(matriculaAlum);
-           
-            String idAsig= GetIdAsignatura(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
+
+            String idAsig = GetIdAsignatura(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
             txt_IdAsignatura.setText(idAsig);
-            
+
             txt_Parcial1.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
             txt_Parcial2.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
             txt_Parcial3.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6).toString());
             txt_Ordinario.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 7).toString());
             txt_Extraordinario.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 8).toString());
-    
+
         }
     }//GEN-LAST:event_tbCalificacionMouseClicked
 
-    String GetIdAsignatura(String nameAsig){
-        
-        String a = null;        
-        String sql = String.format("SELECT Id_Asignatura FROM asignaturas WHERE Nombre='%s'", nameAsig);       
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de calificaciones?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
+        if (res == 0) {
+            Modulo_Profesor mp= new Modulo_Profesor();
+            mp.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    String GetIdAsignatura(String nameAsig) {
+
+        String a = null;
+        String sql = String.format("SELECT Id_Asignatura FROM asignaturas WHERE Nombre='%s'", nameAsig);
         ResultSet rs = conexion.consultarRegistros(sql);
-        try {           
-            while(rs.next()){
+        try {
+            while (rs.next()) {
                 a = rs.getString("Id_Asignatura");
             }
             //tbGrado.setModel(modelo);
@@ -446,11 +476,13 @@ DefaultTableModel modelo;
         }
         return a;
     }
-    void limpiarTabla(){
+
+    void limpiarTabla() {
         modelo = (DefaultTableModel) tbCalificacion.getModel();
         modelo.setRowCount(0);
     }
-    void LimpiarGUI(){
+
+    void LimpiarGUI() {
         txt_Matricula.setText("");
         txt_Parcial1.setText("");
         txt_Parcial2.setText("");
@@ -459,6 +491,7 @@ DefaultTableModel modelo;
         txt_Extraordinario.setText("");
         txt_IdAsignatura.setText("");
     }
+
     public prounivBL2 obtenerDatos() {
         prounivBL2 datos = new prounivBL2();
 
@@ -480,8 +513,9 @@ DefaultTableModel modelo;
 
         return datos;
     }
-    private void filtrar(String seleccion){
-        String sql = "SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and asignaturas.Nombre='"+seleccion+"' ";
+
+    private void filtrar(String seleccion) {
+        String sql = "SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and asignaturas.Nombre='" + seleccion + "' ";
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
             Object[] horario = new Object[9];
@@ -502,22 +536,24 @@ DefaultTableModel modelo;
         } catch (Exception e) {
         }
     }
-    private void mostrarDatosCBOBOX(){
+
+    private void mostrarDatosCBOBOX() {
         cboGrupos.addItem("Todas las asignaturas");
         String sql = "SELECT Nombre FROM asignaturas";
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
-            
+
             while (rs.next()) {
-               cboGrupos.addItem(rs.getString("Nombre"));     
+                cboGrupos.addItem(rs.getString("Nombre"));
             }
             //tbGrado.setModel(modelo);
         } catch (Exception e) {
         }
     }
-     void mostrarDatos() {
-         String idProf=profe;
-        String sql = String.format("SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and Profesores_Matricula_Profesor='%s'",idProf);
+
+    void mostrarDatos() {
+        String idProf = profe;
+        String sql = String.format("SELECT calificaciones.Alumnos_Matricula_alumno, alumnos.Nombre, carreras.Nombre, asignaturas.Nombre, calificaciones.Parcial_1, calificaciones.Parcial_2, calificaciones.Parcial_3, calificaciones.Ordinario, calificaciones.Extraordinario FROM calificaciones, alumnos, asignaturas, carreras WHERE calificaciones.Alumnos_Matricula_alumno=alumnos.Matricula_alumno and calificaciones.Asignaturas_Id_Asignatura= asignaturas.Id_Asignatura and alumnos.Carreras_Id_Carrera=carreras.Id_Carrera and Profesores_Matricula_Profesor='%s'", idProf);
         ResultSet rs = conexion.consultarRegistros(sql);
         try {
             Object[] horario = new Object[9];
@@ -537,24 +573,24 @@ DefaultTableModel modelo;
             //tbGrado.setModel(modelo);
         } catch (Exception e) {
         }
-        
+
         /*Codigo para el saludo del profesor*/
-        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno, Id_genero FROM profesores WHERE Matricula_profesor='%s'", idProf) ;
-        String saludo="";
+        String sql2 = String.format("SELECT Nombre, Apellido_paterno, Apellido_materno, Id_genero FROM profesores WHERE Matricula_profesor='%s'", idProf);
+        String saludo = "";
         ResultSet rs2 = conexion.consultarRegistros(sql2);
         try {
             System.out.println("1");
             Object[] name = new Object[4];
             while (rs2.next()) {
-                name[0]=rs2.getString("Nombre");
-                name[1]=rs2.getString("Apellido_paterno");
-                name[2]=rs2.getString("Apellido_materno");
-                name[3]=rs2.getInt("Id_genero");
-                
-                if(Integer.parseInt(name[3].toString())==1){
-                    saludo="Bienvenido Profesor "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
-                }else{
-                    saludo="Bienvenida Profesora "+name[0].toString()+" "+name[1].toString()+" "+name[2].toString();
+                name[0] = rs2.getString("Nombre");
+                name[1] = rs2.getString("Apellido_paterno");
+                name[2] = rs2.getString("Apellido_materno");
+                name[3] = rs2.getInt("Id_genero");
+
+                if (Integer.parseInt(name[3].toString()) == 1) {
+                    saludo = "Bienvenido Profesor " + name[0].toString() + " " + name[1].toString() + " " + name[2].toString();
+                } else {
+                    saludo = "Bienvenida Profesora " + name[0].toString() + " " + name[1].toString() + " " + name[2].toString();
                 }
                 txt_saludo_profesor.setText(saludo);
             }
@@ -562,6 +598,7 @@ DefaultTableModel modelo;
         } catch (Exception e) {
         }
     }
+
     /**
      * @param args the command line arguments
      */

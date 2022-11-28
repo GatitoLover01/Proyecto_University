@@ -118,7 +118,18 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                 "Día", "Hora", "Aula", "Asignatura"
             }
         ));
+        Tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(Tabla);
+        if (Tabla.getColumnModel().getColumnCount() > 0) {
+            Tabla.getColumnModel().getColumn(0).setResizable(false);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+            Tabla.getColumnModel().getColumn(1).setResizable(false);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+            Tabla.getColumnModel().getColumn(2).setResizable(false);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(0);
+            Tabla.getColumnModel().getColumn(3).setResizable(false);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(0);
+        }
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -231,14 +242,15 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(txt_bienvenida))
-                    .addGroup(HorarioLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HorarioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txt_bienvenida)))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HorarioLayout.setVerticalGroup(

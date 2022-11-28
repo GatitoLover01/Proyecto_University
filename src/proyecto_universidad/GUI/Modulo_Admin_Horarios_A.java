@@ -80,7 +80,19 @@ public class Modulo_Admin_Horarios_A extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbHorario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbHorario);
+        if (tbHorario.getColumnModel().getColumnCount() > 0) {
+            tbHorario.getColumnModel().getColumn(0).setResizable(false);
+            tbHorario.getColumnModel().getColumn(1).setResizable(false);
+            tbHorario.getColumnModel().getColumn(2).setResizable(false);
+            tbHorario.getColumnModel().getColumn(3).setResizable(false);
+            tbHorario.getColumnModel().getColumn(4).setResizable(false);
+            tbHorario.getColumnModel().getColumn(5).setResizable(false);
+            tbHorario.getColumnModel().getColumn(6).setResizable(false);
+            tbHorario.getColumnModel().getColumn(7).setResizable(false);
+            tbHorario.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         javax.swing.GroupLayout HorarioLayout = new javax.swing.GroupLayout(Horario);
         Horario.setLayout(HorarioLayout);

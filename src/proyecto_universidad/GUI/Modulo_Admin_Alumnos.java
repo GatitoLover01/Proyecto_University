@@ -86,6 +86,12 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tb_Alumnos);
+        if (tb_Alumnos.getColumnModel().getColumnCount() > 0) {
+            tb_Alumnos.getColumnModel().getColumn(1).setResizable(false);
+            tb_Alumnos.getColumnModel().getColumn(2).setResizable(false);
+            tb_Alumnos.getColumnModel().getColumn(4).setResizable(false);
+            tb_Alumnos.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
