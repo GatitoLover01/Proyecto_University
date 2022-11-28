@@ -341,8 +341,6 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
             txt_matricula.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
             txt_nombreA.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
             txt_asignatura.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
-            
-
         }
 
     }//GEN-LAST:event_TablaMouseClicked

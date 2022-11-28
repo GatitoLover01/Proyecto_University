@@ -9,9 +9,20 @@ import java.sql.ResultSet;
  * @author erick
  */
 public class conexion {
+    
+   
     //genero en alumnos no se guarda al actualizar
-    //boton horarios no dirige a nada
+    
+    
+    //boton horariosalumnos no dirige a nada
     //boton documentos no dirige a nada
+    
+    // modulo horarios prof no tiene diuseño
+    //modulo reinsc falta diseño
+    
+    
+    
+    
     
     
     /*Conexión con DBFREE
