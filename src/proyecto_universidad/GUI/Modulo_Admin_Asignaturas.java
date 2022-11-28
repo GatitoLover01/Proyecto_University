@@ -88,7 +88,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(780, 169));
 
         jLabel6.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
-        jLabel6.setText("UNIVERSIDAD FRANCISCO");
+        jLabel6.setText("UNIVERSIDAD DEL MONTE");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Logo_Universidad.png"))); // NOI18N
 
