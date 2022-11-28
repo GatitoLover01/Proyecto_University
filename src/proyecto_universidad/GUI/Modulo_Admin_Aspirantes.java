@@ -275,14 +275,9 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             txt_ApellidoM.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
             txt_Curp.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
             datos.setCertificado((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 4));
-            System.out.println(datos.getCertificado());
             datos.setCita((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 5));
-            System.out.println(datos.getCita());
             datos.setCurpD((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 6));
-            System.out.println(datos.getCurpD());
             datos.setActaN((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 7));
-            System.out.println(datos.getActaN());
-            
             
         }
     }//GEN-LAST:event_tbAspirantesMouseClicked
