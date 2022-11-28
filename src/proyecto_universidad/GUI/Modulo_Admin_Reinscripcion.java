@@ -118,12 +118,17 @@ public class Modulo_Admin_Reinscripcion extends javax.swing.JFrame {
                 "Matricula Alumno", "Nombre alumno"
             }
         ));
+        Tabla.getTableHeader().setReorderingAllowed(false);
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(Tabla);
+        if (Tabla.getColumnModel().getColumnCount() > 0) {
+            Tabla.getColumnModel().getColumn(0).setResizable(false);
+            Tabla.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 

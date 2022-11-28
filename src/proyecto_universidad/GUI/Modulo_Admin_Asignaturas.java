@@ -168,6 +168,11 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tbAsignaturas);
+        if (tbAsignaturas.getColumnModel().getColumnCount() > 0) {
+            tbAsignaturas.getColumnModel().getColumn(0).setResizable(false);
+            tbAsignaturas.getColumnModel().getColumn(1).setResizable(false);
+            tbAsignaturas.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 610, 220));
 
