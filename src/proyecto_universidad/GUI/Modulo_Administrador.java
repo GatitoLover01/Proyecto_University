@@ -387,10 +387,16 @@ public class Modulo_Administrador extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        Modulo_Admin_Horarios_A modAHA = new Modulo_Admin_Horarios_A();
+        modAHA.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        Modulo_Admin_Documentación modAD = new Modulo_Admin_Documentación();
+        modAD.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
