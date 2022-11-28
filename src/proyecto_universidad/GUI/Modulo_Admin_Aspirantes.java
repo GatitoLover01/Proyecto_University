@@ -312,8 +312,8 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             String strSetenciaInsert2 = String.format("INSERT INTO `documentosalumnos`(`Certificado_preparatorio`, `Cita`, `Curp`, `Acta_nacimiento`, `Alumnos_Matricula_alumno`, `CurpString`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",datos.getCertificado(),datos.getCita(), datos.getCurpD(), datos.getActaN(), matricula , datos.getCurp() );
             conexion.ejecutarSentenciaSQL(strSetenciaInsert2);
                     
-            //String strSentenciaDelete = String.format("DELETE FROM `inscripciones` WHERE `Id_Inscripcion` = '%s'",datos.getIdInscripcion());
-            //conexion.ejecutarSentenciaSQL(strSentenciaDelete);
+            String strSentenciaDelete = String.format("DELETE FROM `inscripciones` WHERE `Id_Inscripcion` = '%s'",datos.getIdInscripcion());
+            conexion.ejecutarSentenciaSQL(strSentenciaDelete);
            
             this.limpiarTabla();
             this.mostrarDatos();
