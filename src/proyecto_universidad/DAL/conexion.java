@@ -13,16 +13,12 @@ public class conexion {
    
     //genero en alumnos no se guarda al actualizar
     
-    
     //boton horariosalumnos no dirige a nada
     //boton documentos no dirige a nada
     
     // modulo horarios prof no tiene diuseño
     //modulo reinsc falta diseño
-    
-    
-    
-    
+       
     
     
     /*Conexión con DBFREE

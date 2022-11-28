@@ -55,7 +55,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         cbGenero = new javax.swing.JComboBox<>();
         Botones = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -205,17 +205,17 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         Botones.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton6.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton6.setText("Actualizar");
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
-        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setContentAreaFilled(false);
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnActualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -239,7 +239,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -249,7 +249,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
+                    .addComponent(btnActualizar)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
@@ -389,17 +389,18 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_ContrasenaActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         String nombre = txt_Nombre.getText();
         String apP = txt_ApP.getText();
         String apM = txt_ApM.getText();
         String contraseña = txt_Contrasena.getText();
+        int genero = cbGenero.getSelectedIndex();
 
         try {
             if (nombre.equals("") || apP.equals("") || apM.equals("") || contraseña.equals("")) {
                 JOptionPane.showMessageDialog(this, "Faltan ingresar datos");
             } else {
-                String sql = String.format("UPDATE `alumnos` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s', `Contrasena` = '%s' WHERE Matricula_alumno = '%s'", nombre, apP, apM, contraseña, matriculaAlum);
+                String sql = String.format("UPDATE `alumnos` SET `Nombre` = '%s',`Apellido_paterno` = '%s',`Apellido_materno` = '%s', `Contrasena` = '%s', `Id_genero` = '%s' WHERE Matricula_alumno = '%s'", nombre, apP, apM, contraseña, genero, matriculaAlum);
                 conexion.ejecutarSentenciaSQL(sql);
                 JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 this.limpiarTabla();
@@ -409,7 +410,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int res = JOptionPane.showConfirmDialog(null, "¿Desea salir de administración de 'alumnos'?", "Mensaje de confirmación", JOptionPane.YES_OPTION);
@@ -478,7 +479,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         
     }
     
-    String GetNameGenero(int Id_Genero){
+    public String GetNameGenero(int Id_Genero){
         
         String a = null;        
         String sql = String.format("Select Nombre from genero where Id_genero = '%s' ", Id_Genero);       
@@ -526,6 +527,7 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
         txt_ApP.setText("");           
         txt_ApM.setText("");          
         txt_Contrasena.setText("");  
+        cbGenero.setSelectedIndex(0);        
     }
     
     void limpiarTabla(){
@@ -594,10 +596,10 @@ public class Modulo_Admin_Alumnos extends javax.swing.JFrame {
     private javax.swing.JPanel Contenido;
     private javax.swing.JPanel Datos;
     private javax.swing.JPanel Encabezado;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
