@@ -171,6 +171,16 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tbAspirantes);
+        if (tbAspirantes.getColumnModel().getColumnCount() > 0) {
+            tbAspirantes.getColumnModel().getColumn(0).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(1).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(2).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(3).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(4).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(5).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(6).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 720, 220));
 
@@ -265,14 +275,9 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             txt_ApellidoM.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
             txt_Curp.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
             datos.setCertificado((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 4));
-            System.out.println(datos.getCertificado());
             datos.setCita((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 5));
-            System.out.println(datos.getCita());
             datos.setCurpD((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 6));
-            System.out.println(datos.getCurpD());
             datos.setActaN((Blob) receptor.getModel().getValueAt(receptor.getSelectedRow(), 7));
-            System.out.println(datos.getActaN());
-            
             
         }
     }//GEN-LAST:event_tbAspirantesMouseClicked
