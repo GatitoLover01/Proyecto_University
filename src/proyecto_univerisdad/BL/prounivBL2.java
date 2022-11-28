@@ -5,6 +5,11 @@
  */
 package proyecto_univerisdad.BL;
 
+import java.sql.Blob;
+
+
+
+
 /**
  *
  * @author Adry Moisés
@@ -12,6 +17,41 @@ package proyecto_univerisdad.BL;
 public class prounivBL2 {
     String matricula, parcial1, parcial2, parcial3, ordinario, extraordinario , asignatura, nombre, apellidoP, apellidoM, curp;
     int idInscripcion,idCarrera, genero;
+    Blob certificado, cita, curpD, actaN;
+
+    public Blob getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(Blob certificado) {
+        this.certificado = certificado;
+    }
+
+    public Blob getCita() {
+        return cita;
+    }
+
+    public void setCita(Blob cita) {
+        this.cita = cita;
+    }
+
+    public Blob getCurpD() {
+        return curpD;
+    }
+
+    public void setCurpD(Blob curpD) {
+        this.curpD = curpD;
+    }
+
+    public Blob getActaN() {
+        return actaN;
+    }
+
+    public void setActaN(Blob actaN) {
+        this.actaN = actaN;
+    }
+
+    
 
     public int getIdCarrera() {
         return idCarrera;
