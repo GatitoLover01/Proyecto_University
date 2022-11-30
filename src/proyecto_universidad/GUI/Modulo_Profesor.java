@@ -56,6 +56,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             System.out.println("1");
             Object[] name = new Object[4];
             while (rs2.next()) {
+                System.out.println("2");
                 name[0]=rs2.getString("Nombre");
                 name[1]=rs2.getString("Apellido_paterno");
                 name[2]=rs2.getString("Apellido_materno");
