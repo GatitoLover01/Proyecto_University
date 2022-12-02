@@ -130,11 +130,11 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("ASPIRANTES");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 560, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 560, 40));
 
-        jButton10.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton10.setText("REGRESAR");
+        jButton10.setText("Regresar");
         jButton10.setBorderPainted(false);
         jButton10.setContentAreaFilled(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -145,7 +145,7 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 150, 30));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 150, 30));
 
         tbAspirantes.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         tbAspirantes.setModel(new javax.swing.table.DefaultTableModel(
@@ -173,16 +173,20 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbAspirantes);
         if (tbAspirantes.getColumnModel().getColumnCount() > 0) {
             tbAspirantes.getColumnModel().getColumn(0).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(0).setPreferredWidth(40);
             tbAspirantes.getColumnModel().getColumn(1).setResizable(false);
             tbAspirantes.getColumnModel().getColumn(2).setResizable(false);
             tbAspirantes.getColumnModel().getColumn(3).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(3).setPreferredWidth(50);
             tbAspirantes.getColumnModel().getColumn(4).setResizable(false);
             tbAspirantes.getColumnModel().getColumn(5).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(5).setPreferredWidth(40);
             tbAspirantes.getColumnModel().getColumn(6).setResizable(false);
+            tbAspirantes.getColumnModel().getColumn(6).setPreferredWidth(40);
             tbAspirantes.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 720, 220));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 710, 220));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -232,23 +236,37 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
         jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
         jPanel6.add(txt_Curp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 180, -1));
 
+        jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton1.setText("Aceptar");
+        jButton1.setContentAreaFilled(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 170, -1));
+        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 150, -1));
 
+        jButton2.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
         jButton2.setText("Rechazar");
+        jButton2.setContentAreaFilled(false);
+        jButton2.setFocusPainted(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 170, -1));
+        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 150, -1));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 280, 390));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 260, 390));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 550));
 

@@ -25,7 +25,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarDatos();
-        cbx_grupos();
     }
 
 
@@ -91,7 +90,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         Calificaciones = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Botones = new javax.swing.JPanel();
-        cbx_grupos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -145,7 +143,14 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Agregar calificación");
+        jButton1.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
+        jButton1.setText("Calificar");
+        jButton1.setContentAreaFilled(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/BotonPressed.png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/OnBoton.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -157,22 +162,16 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         BotonesLayout.setHorizontalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbx_grupos, 0, 180, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(BotonesLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         BotonesLayout.setVerticalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BotonesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(cbx_grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jLabel15.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -198,14 +197,14 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalificacionesLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(CalificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalificacionesLayout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(44, 44, 44))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalificacionesLayout.createSequentialGroup()
                         .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(18, 18, 18))))
         );
         CalificacionesLayout.setVerticalGroup(
             CalificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,15 +242,14 @@ public class Modulo_Profesor extends javax.swing.JFrame {
             .addGroup(HorarioLayout.createSequentialGroup()
                 .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jButton2))
+                        .addGap(44, 44, 44)
+                        .addComponent(txt_bienvenida))
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HorarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txt_bienvenida)))
-                .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(64, 64, 64)
+                        .addGroup(HorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HorarioLayout.setVerticalGroup(
@@ -262,13 +260,13 @@ public class Modulo_Profesor extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addComponent(Calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HorarioLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(21, 21, 21)
                         .addComponent(txt_bienvenida)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         Encabezado3.setBackground(new java.awt.Color(204, 204, 204));
@@ -361,21 +359,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    void cbx_grupos() {
-        String sql =  String.format("Select Grupos_Id_Grupo from horario_alumno where Profesores_Matricula_profesor = '%s'",profe);
-
-        try {
-            ResultSet rs = conexion.consultarRegistros(sql);
-            cbx_grupos.addItem("Seleccione una opción");
-            while (rs.next()) {
-
-                cbx_grupos.addItem(rs.getString("Grupos_Id_Grupo"));
-
-            }
-        } catch (SQLException e) {
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -418,7 +401,6 @@ public class Modulo_Profesor extends javax.swing.JFrame {
     private javax.swing.JPanel Horario;
     private javax.swing.JPanel Principal;
     private javax.swing.JTable Tabla;
-    private javax.swing.JComboBox<String> cbx_grupos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel15;
