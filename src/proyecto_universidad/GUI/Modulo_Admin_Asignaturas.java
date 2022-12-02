@@ -129,9 +129,9 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel5.setText("ASIGNATURAS");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 560, 40));
 
-        jButton10.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
-        jButton10.setText("REGRESAR");
+        jButton10.setText("Regresar");
         jButton10.setBorderPainted(false);
         jButton10.setContentAreaFilled(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -142,7 +142,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 150, 30));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 150, 30));
 
         tbAsignaturas.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         tbAsignaturas.setModel(new javax.swing.table.DefaultTableModel(
