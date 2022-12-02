@@ -171,9 +171,6 @@ public class Login extends javax.swing.JFrame {
                                 && !datos.getContraseña().equals(resultado.getString("Contrasena"))){
                              JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
                              return;
-                        }else if(!datos.getMatricula().equals(resultado.getString("Matricula_profesor"))){
-                             JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-                             return;
                         }
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos. \n"
