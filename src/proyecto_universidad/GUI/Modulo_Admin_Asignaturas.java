@@ -127,7 +127,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("ASIGNATURAS");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 560, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 720, 40));
 
         jButton10.setFont(new java.awt.Font("Corbel", 0, 16)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/Boton.png"))); // NOI18N
@@ -174,7 +174,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
             tbAsignaturas.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 610, 220));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 610, 280));
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -253,7 +253,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 590, 50));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 590, 50));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -298,7 +298,7 @@ public class Modulo_Admin_Asignaturas extends javax.swing.JFrame {
         txt_Creditos.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         jPanel6.add(txt_Creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 280, 390));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 280, 340));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 550));
 

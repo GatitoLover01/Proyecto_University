@@ -186,7 +186,7 @@ public class Modulo_Admin_Aspirantes extends javax.swing.JFrame {
             tbAspirantes.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 710, 220));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 710, 270));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

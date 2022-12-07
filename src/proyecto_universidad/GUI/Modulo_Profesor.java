@@ -272,7 +272,7 @@ public class Modulo_Profesor extends javax.swing.JFrame {
         Encabezado3.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("Corbel", 0, 48)); // NOI18N
-        jLabel16.setText("UNIVERSIDAD FRANCISCO");
+        jLabel16.setText("UNIVERSIDAD DEL MONTE");
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_universidad/Imagenes/barra.png"))); // NOI18N
 
